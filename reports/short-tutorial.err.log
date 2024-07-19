@@ -1,0 +1,40 @@
+Traceback (most recent call last):
+  File "/home/rsilva/miniconda3/envs/datascience/lib/python3.12/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/home/rsilva/miniconda3/envs/datascience/lib/python3.12/site-packages/nbclient/client.py", line 1314, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rsilva/miniconda3/envs/datascience/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rsilva/miniconda3/envs/datascience/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/rsilva/miniconda3/envs/datascience/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/rsilva/miniconda3/envs/datascience/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/rsilva/miniconda3/envs/datascience/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# criar um objeto que permite escrever um arquivo excel
+escritor = pd.ExcelWriter('tabela.xls', engine='xlsxwriter')
+
+# converter o dataframe para um formato de dados que pode ser escrito
+sy1617.to_excel(escritor, sheet_name='Sheet1', index=False)
+
+# escrever o arrquivo e fechar o escritor
+escritor.save()
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mAttributeError[0m                            Traceback (most recent call last)
+Cell [0;32mIn[74], line 8[0m
+[1;32m      5[0m sy1617[38;5;241m.[39mto_excel(escritor, sheet_name[38;5;241m=[39m[38;5;124m'[39m[38;5;124mSheet1[39m[38;5;124m'[39m, index[38;5;241m=[39m[38;5;28;01mFalse[39;00m)
+[1;32m      7[0m [38;5;66;03m# escrever o arrquivo e fechar o escritor[39;00m
+[0;32m----> 8[0m [43mescritor[49m[38;5;241;43m.[39;49m[43msave[49m()
+
+[0;31mAttributeError[0m: 'XlsxWriter' object has no attribute 'save'
+

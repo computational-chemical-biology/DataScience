@@ -1,0 +1,1154 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>1 - IPython &#8212; Ciência dos Dados</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '1-Introduction_to_Jupyter_Platform';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="" href="2.1-Data_Structures.html" />
+    <link rel="prev" title="Introdução à ciência dos dados" href="0-Index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="0-Index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Ciência dos Dados</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="0-Index.html">
+                    Introdução à ciência dos dados
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">1 - IPython</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="2.1-Data_Structures.html"><!--NAVIGATION--></a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="2.2-Logical_Operations.html">2 Conceitos básicos de programação</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.3-Control_Structures.html">2 Conceitos básicos de programação</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.4-Functions.html">2 Conceitos básicos de programação</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="2-Introduction_to_python_programming_language.html">2 - Introdução à linguagem de programação Python</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="3-NumPy_Library.html">3  Biblioteca NumPy</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="4-Pandas_Library.html">4  Biblioteca Pandas</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="5-Scikit-Learn_Library.html">5  Biblioteca Scikit-Learn</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="6-Regression_Analysis.html">6  Regressão Linear</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="7-Classification_Analysis.html">7 Análise de Classificação</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="8-Cluster_Analysis.html">8  Análise de Agrupamento</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="short-tutorial.html">Conceitos básicos de Python e da biblioteca Pandas</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F1-Introduction_to_Jupyter_Platform.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/1-Introduction_to_Jupyter_Platform.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>1 - IPython</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">1 - IPython</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#criando-um-novo-notebook">Criando um novo notebook</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#componentes-basicos-de-um-notebook">Componentes básicos de um <em>notebook</em></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#antes-de-comecar"><span style="color:red">Antes de começar</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#execucao-de-codigo-obtendo-ajuda">Execução de código, obtendo ajuda</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tab-auto-complete">Tab auto-complete</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interatividade-entrada-input-saida-output-historia-history">Interatividade: entrada (<em>input</em>), saída (<em>output</em>), história (<em>history</em>)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acessando-funcoes-do-sistema-operacional">Acessando funções do sistema operacional</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funcoes-magicas-magic">Funções ‘mágicas’ (<em>magic</em>)</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">Referências</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#voltar-ao-topo"><span class="xref myst">Voltar ao topo</span></a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <!--NAVIGATION-->
+<p>&lt; <a class="reference internal" href="0-Index.html"><span class="std std-doc">Contents</span></a> | <a class="reference internal" href="2-Introduction_to_python_programming_language.html"><span class="std std-doc">Introduction to python programming language</span></a> &gt;</p>
+<p><a id="top"></a> <br></p>
+<section class="tex2jax_ignore mathjax_ignore" id="ipython">
+<h1>1 - IPython<a class="headerlink" href="#ipython" title="Link to this heading">#</a></h1>
+<p><a class="reference external" href="http://colab.research.google.com/github/computational-chemical-biology/DataScience/blob/master/notebooks/1-Introduction_to_Jupyter_Platform.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
+<p>IPython (Interactive Python) é um ambiente interativo para execução de código em python. Toda a sintaxe the python é válida em IPython, que também oferece um conjunto de opções que permitem maior eficiência e fluidez na execução do código. IPython tem seu desenvolvimento relacionado ao <a class="reference external" href="http://jupyter.org">projeto Jupyter</a>, que oferece ‘cadernos’ (<em>notebooks</em>) baseados nos navegadores <em>web</em> com ferramentas para auxiliar o desenvolvimento, compartilhamento e até publicação de resultados científicos <cite data-cite="236589/R4D47YI3"></cite>.</p>
+<p>Os <em>notebooks</em> utilizados nesse curso são compostos de IPython. Esta introdução tem o objetivo de apresentar as principais funcionalidades dos <em>notebooks</em>, que serão utilizadas durante o curso.</p>
+<section id="criando-um-novo-notebook">
+<h2>Criando um novo notebook<a class="headerlink" href="#criando-um-novo-notebook" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;./figuras/create_notebook.gif&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/a6fdf68a0fe549cdd53c2b93c83184825847152b417d8f532ddaf4772b85d038.gif" src="_images/a6fdf68a0fe549cdd53c2b93c83184825847152b417d8f532ddaf4772b85d038.gif" />
+</div>
+</div>
+</section>
+<section id="componentes-basicos-de-um-notebook">
+<h2>Componentes básicos de um <em>notebook</em><a class="headerlink" href="#componentes-basicos-de-um-notebook" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;./figuras/menu.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/f7d24d4e71d6826ca4327afe5be3fd28f059418a14240d3677b2406a1fb98b21.png" src="_images/f7d24d4e71d6826ca4327afe5be3fd28f059418a14240d3677b2406a1fb98b21.png" />
+</div>
+</div>
+</section>
+<section id="antes-de-comecar">
+<h2><span style="color:red">Antes de começar</span><a class="headerlink" href="#antes-de-comecar" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;figuras/make_copy.gif&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/9be233f9fcb4a72d3d5f9e64bb5f048afee3d2d0e1cfecb578d373892da8c4e4.gif" src="_images/9be233f9fcb4a72d3d5f9e64bb5f048afee3d2d0e1cfecb578d373892da8c4e4.gif" />
+</div>
+</div>
+</section>
+<section id="execucao-de-codigo-obtendo-ajuda">
+<h2>Execução de código, obtendo ajuda<a class="headerlink" href="#execucao-de-codigo-obtendo-ajuda" title="Link to this heading">#</a></h2>
+<p>No <em>notebook</em>, para executar uma célula, pressione <code class="docutils literal notranslate"><span class="pre">Shift-Enter</span></code>. Este comando executa a célula e coloca o cursor na próxima célula abaixo, ou cria uma nova se você estiver no fim. Alternativas são:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Alt-Enter</span></code> para forçar a criação de uma nova célula incondicionalmente.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Control-Enter</span></code> executa a célula e mantém o cursor na mesma célula.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Alô, Alô, Terezinha!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Alô, Alô, Terezinha!
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="err">!</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Obtendo ajuda:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">?</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Digitando <code class="docutils literal notranslate"><span class="pre">nome</span> <span class="pre">do</span> <span class="pre">objeto?</span></code> serão impressos detalhes sobre o objeto, incluindo <em>docstrings</em>, linhas definidoras de funções (para parâmetros da função) e detalhes para construtores de classes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">collections</span>
+collections.namedtuple<span class="o">?</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>collections.Counter<span class="o">??</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>*int*<span class="o">?</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Para obter referências resumidas de IPython:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">quickref</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="tab-auto-complete">
+<h2>Tab auto-complete<a class="headerlink" href="#tab-auto-complete" title="Link to this heading">#</a></h2>
+<p>Tab auto-complete, especialmente para atributos, é uma forma conveniente de explorar a estrutura de um objeto. Simplesmente faça <code class="docutils literal notranslate"><span class="pre">nome</span> <span class="pre">do</span> <span class="pre">objeto.&lt;TAB&gt;</span></code> para visualizar os atributos de um objeto. Além de atributos, Tab auto-complete também funciona para nomes de arquivos e diretórios.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">collections</span><span class="o">.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+    <span class="n">collections</span><span class="o">.</span>
+                <span class="o">^</span>
+<span class="ne">SyntaxError</span>: invalid syntax
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="interatividade-entrada-input-saida-output-historia-history">
+<h2>Interatividade: entrada (<em>input</em>), saída (<em>output</em>), história (<em>history</em>)<a class="headerlink" href="#interatividade-entrada-input-saida-output-historia-history" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span><span class="o">+</span><span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ultimo valor é atribuido à _</span>
+<span class="n">_</span><span class="o">+</span><span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22
+</pre></div>
+</div>
+</div>
+</div>
+<p>Você pode suprimir o armazenamento e renderização da saída adicionando ‘;’ ao final do comando.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">10</span><span class="o">+</span><span class="mi">20</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22
+</pre></div>
+</div>
+</div>
+</div>
+<p>A saída é armazenada na variáveis <code class="docutils literal notranslate"><span class="pre">_N</span></code> e <code class="docutils literal notranslate"><span class="pre">Out[N]</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># assumindo que 11 células foram executadas até o momento</span>
+<span class="n">_10</span> <span class="o">==</span> <span class="n">Out</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>Entradas prévias estão também disponíveis:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">In</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;# assumindo que 11 células foram executadas até o momento\n_10 == Out[10]&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_i</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;In[11]&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">history</span> -n 1-5
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   1: print(&quot;Alô, Alô, Terezinha!&quot;)
+   2: ?
+   3:
+import collections
+collections.namedtuple?
+   4: collections.Counter??
+   5: *int*?
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Exercício</strong></p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">%history?</span></code> para observar a documentação <em>magic</em> de <code class="docutils literal notranslate"><span class="pre">%history</span></code>, e escreva as últimas 10 linhas da história para um arquivo nomeado <code class="docutils literal notranslate"><span class="pre">log.py</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">history</span><span class="o">?</span>
+
+<span class="o">%</span><span class="k">history</span> -f log.py 10-20
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="acessando-funcoes-do-sistema-operacional">
+<h2>Acessando funções do sistema operacional<a class="headerlink" href="#acessando-funcoes-do-sistema-operacional" title="Link to this heading">#</a></h2>
+<p>Utilizando o ponto de exclamação (!), é possível acessar funções do terminal <cite data-cite="236589/2B5TW4AR"></cite>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pwd
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/rsilva/Documents/ejupyter/notebooks
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">files</span> <span class="o">=</span> <span class="o">!</span>ls<span class="w"> </span>.
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Arquivos no diretório notebooks:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">files</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Arquivos no diretório notebooks:
+[&#39;0-Index.ipynb&#39;, &#39;1-Introduction_to_Jupyter_Platform.ipynb&#39;, &#39;2.1-Data_Structures.ipynb&#39;, &#39;2.2-Logical_Operations.ipynb&#39;, &#39;2.3-Control_Structures.ipynb&#39;, &#39;2.4-Functions.ipynb&#39;, &#39;2-Introduction_to_python_programming_language.ipynb&#39;, &#39;3-NumPy_Library.ipynb&#39;, &#39;4-Pandas_Library.ipynb&#39;, &#39;5-Scikit-Learn_Library.ipynb&#39;, &#39;6-Regression_Analysis.ipynb&#39;, &#39;7-Classification_Analysis.ipynb&#39;, &#39;8-Cluster_Analysis.ipynb&#39;, &#39;arquivo_1.csv&#39;, &#39;COMP562_Lect4.ipynb&#39;, &#39;dados&#39;, &#39;dendrograma.pdf&#39;, &#39;figuras&#39;, &#39;log.py&#39;, &#39;residuals.py&#39;, &#39;short-tutorial.ipynb&#39;, &#39;tabela.csv&#39;, &#39;tabela.xls&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span><span class="nb">echo</span><span class="w"> </span><span class="nv">$files</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0-Index.ipynb, 1-Introduction_to_Jupyter_Platform.ipynb, 2.1-Data_Structures.ipynb, 2.2-Logical_Operations.ipynb, 2.3-Control_Structures.ipynb, 2.4-Functions.ipynb, 2-Introduction_to_python_programming_language.ipynb, 3-NumPy_Library.ipynb, 4-Pandas_Library.ipynb, 5-Scikit-Learn_Library.ipynb, 6-Regression_Analysis.ipynb, 7-Classification_Analysis.ipynb, 8-Cluster_Analysis.ipynb, arquivo_1.csv, COMP562_Lect4.ipynb, dados, dendrograma.pdf, figuras, log.py, residuals.py, short-tutorial.ipynb, tabela.csv, tabela.xls]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span><span class="nb">echo</span><span class="w"> </span><span class="o">{</span>files<span class="o">[</span><span class="m">0</span><span class="o">]</span>.upper<span class="o">()}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0-INDEX.IPYNB
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note que estas funcionalidades estão disponíveis até em blocos com múltiplas linhas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">f</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">files</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;ipynb&#39;</span><span class="p">):</span>
+        <span class="o">!</span><span class="nb">echo</span><span class="w"> </span><span class="o">{</span><span class="s2">&quot;%02d&quot;</span><span class="w"> </span>%<span class="w"> </span>i<span class="o">}</span><span class="w"> </span>-<span class="w"> </span><span class="s2">&quot;{os.path.splitext(f)[0]}&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>00 - 0-Index
+01 - 1-Introduction_to_Jupyter_Platform
+02 - 2.1-Data_Structures
+03 - 2.2-Logical_Operations
+04 - 2.3-Control_Structures
+05 - 2.4-Functions
+06 - 2-Introduction_to_python_programming_language
+07 - 3-NumPy_Library
+08 - 4-Pandas_Library
+09 - 5-Scikit-Learn_Library
+10 - 6-Regression_Analysis
+11 - 7-Classification_Analysis
+12 - 8-Cluster_Analysis
+--
+14 - COMP562_Lect4
+--
+--
+--
+--
+--
+20 - short-tutorial
+--
+--
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="funcoes-magicas-magic">
+<h2>Funções ‘mágicas’ (<em>magic</em>)<a class="headerlink" href="#funcoes-magicas-magic" title="Link to this heading">#</a></h2>
+<p>As funções mágicas de IPython são um conjunto de comandos, invocados pela adição de um ou dois caracteres <code class="docutils literal notranslate"><span class="pre">%</span></code> antes dos comandos, que existem em um ambiente (<em>namespace</em>) separado do python regular, e fornece uma interface mais semelhante a linha de comando. Os comandos recebem dois argumentos, sem aspas, parêntesis ou vírgulas <cite data-cite="236589/R4D47YI3"></cite>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">magic</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Line</em> vs <em>cell magics</em>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> list(range(1000))
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>13.2 µs ± 81.4 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>it
+<span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.34 µs ± 24.5 ns per loop (mean ± std. dev. of 7 runs, 1000000 loops each)
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Line magics</em> podem ser usadas dentro de blocos de código:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="n">i</span><span class="o">*</span><span class="mi">100</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;size:&#39;</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+    <span class="o">%</span><span class="k">timeit</span> list(range(size))
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>size: 100 777 ns ± 4.14 ns per loop (mean ± std. dev. of 7 runs, 1000000 loops each)
+size: 200 1.52 µs ± 36.9 ns per loop (mean ± std. dev. of 7 runs, 1000000 loops each)
+size: 300 2.38 µs ± 42.9 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+size: 400 4.13 µs ± 151 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Magics</em> podem não necessitar ser código em python:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+echo &quot;My shell is:&quot; $SHELL
+echo &quot;My disk usage is:&quot;
+df -h
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>My shell is: /bin/bash
+My disk usage is:
+Filesystem      Size  Used Avail Use% Mounted on
+udev            3,9G     0  3,9G   0% /dev
+tmpfs           787M  2,0M  785M   1% /run
+/dev/sda2       900G  779G   76G  92% /
+tmpfs           3,9G  703M  3,2G  18% /dev/shm
+tmpfs           5,0M  4,0K  5,0M   1% /run/lock
+tmpfs           3,9G     0  3,9G   0% /sys/fs/cgroup
+/dev/loop0      3,8M  3,8M     0 100% /snap/gnome-system-monitor/100
+/dev/loop2      141M  141M     0 100% /snap/gnome-3-26-1604/97
+/dev/loop1       55M   55M     0 100% /snap/core18/1192
+/dev/loop3      4,3M  4,3M     0 100% /snap/gnome-calculator/536
+/dev/loop4       90M   90M     0 100% /snap/core/7713
+/dev/loop7      3,8M  3,8M     0 100% /snap/gnome-system-monitor/107
+/dev/loop5       45M   45M     0 100% /snap/gtk-common-themes/1353
+/dev/loop6      157M  157M     0 100% /snap/gnome-3-28-1804/91
+/dev/loop8       15M   15M     0 100% /snap/gnome-characters/317
+/dev/loop9      1,0M  1,0M     0 100% /snap/gnome-logs/81
+/dev/loop10      55M   55M     0 100% /snap/core18/1223
+/dev/loop12      15M   15M     0 100% /snap/gnome-characters/359
+/dev/loop11      90M   90M     0 100% /snap/core/7917
+/dev/loop15     141M  141M     0 100% /snap/gnome-3-26-1604/94
+/dev/loop13     150M  150M     0 100% /snap/gnome-3-28-1804/71
+/dev/loop14     4,3M  4,3M     0 100% /snap/gnome-calculator/544
+/dev/loop16      43M   43M     0 100% /snap/gtk-common-themes/1313
+/dev/loop17     1,0M  1,0M     0 100% /snap/gnome-logs/73
+/dev/sda1       511M  6,1M  505M   2% /boot/efi
+tmpfs           787M   16K  787M   1% /run/user/121
+tmpfs           787M   60K  787M   1% /run/user/1000
+</pre></div>
+</div>
+</div>
+</div>
+<p>Exemplo interessante de mágica para célula: criar um arquivo de um notebook local::</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> test.txt
+<span class="n">Este</span> <span class="n">é</span> <span class="n">um</span> <span class="n">arquivo</span><span class="err">!</span>
+<span class="n">Ele</span> <span class="n">pode</span> <span class="n">conter</span> <span class="n">qualquer</span> <span class="n">coisa</span><span class="o">...</span>
+
+<span class="n">E</span> <span class="n">mais</span><span class="o">...</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing test.txt
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>cat<span class="w"> </span>test.txt
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Este é um arquivo!
+Ele pode conter qualquer coisa...
+
+E mais...
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># este é um comentário, texto precedido por #</span>
+<span class="c1"># nas células do Jupyter ou em outro código </span>
+<span class="c1"># Python não serão executadas, os comentários servem</span>
+<span class="c1"># para adicionar informações úteis sobre o código</span>
+<span class="c1"># como abaixo</span>
+
+<span class="c1"># comando para apagar o arquivo criado</span>
+<span class="o">!</span>rm<span class="w"> </span>test.txt
+</pre></div>
+</div>
+</div>
+</div>
+<p>Inspecionar mágicas disponíveis no sistema:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">lsmagic</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Available line magics:
+%alias  %alias_magic  %autoawait  %autocall  %automagic  %autosave  %bookmark  %cat  %cd  %clear  %colors  %conda  %config  %connect_info  %cp  %debug  %dhist  %dirs  %doctest_mode  %ed  %edit  %env  %gui  %hist  %history  %killbgscripts  %ldir  %less  %lf  %lk  %ll  %load  %load_ext  %loadpy  %logoff  %logon  %logstart  %logstate  %logstop  %ls  %lsmagic  %lx  %macro  %magic  %man  %matplotlib  %mkdir  %more  %mv  %notebook  %page  %pastebin  %pdb  %pdef  %pdoc  %pfile  %pinfo  %pinfo2  %pip  %popd  %pprint  %precision  %prun  %psearch  %psource  %pushd  %pwd  %pycat  %pylab  %qtconsole  %quickref  %recall  %rehashx  %reload_ext  %rep  %rerun  %reset  %reset_selective  %rm  %rmdir  %run  %save  %sc  %set_env  %store  %sx  %system  %tb  %time  %timeit  %unalias  %unload_ext  %who  %who_ls  %whos  %xdel  %xmode
+
+Available cell magics:
+%%!  %%HTML  %%SVG  %%bash  %%capture  %%debug  %%file  %%html  %%javascript  %%js  %%latex  %%markdown  %%perl  %%prun  %%pypy  %%python  %%python2  %%python3  %%ruby  %%script  %%sh  %%svg  %%sx  %%system  %%time  %%timeit  %%writefile
+
+Automagic is ON, % prefix IS NOT needed for line magics.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definindo uma função para ilustrar </span>
+<span class="c1"># a &#39;mágica&#39; abaixo</span>
+<span class="c1"># veremos mais sobre as funções, adiante</span>
+<span class="k">def</span> <span class="nf">to_optimize</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">ta</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">tb</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="n">i</span><span class="o">**</span><span class="mi">2</span>
+            <span class="n">b</span> <span class="o">=</span> <span class="n">j</span><span class="o">*</span><span class="mi">2</span>
+            <span class="n">total</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span>  <span class="n">a</span>
+            <span class="n">total</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span>  <span class="n">b</span>
+    <span class="k">return</span> <span class="n">total</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> to_optimize(1_000)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>378 ms ± 16.7 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">prun</span> to_optimize(1_000)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="referencias">
+<h1>Referências<a class="headerlink" href="#referencias" title="Link to this heading">#</a></h1>
+<div class="cite2c-biblio"></div><section id="voltar-ao-topo">
+<h2><a class="reference internal" href="#top"><span class="xref myst">Voltar ao topo</span></a><a class="headerlink" href="#voltar-ao-topo" title="Link to this heading">#</a></h2>
+<!--NAVIGATION-->
+<p>&lt; <a class="reference internal" href="0-Index.html"><span class="std std-doc">Contents</span></a> | <a class="reference internal" href="2-Introduction_to_python_programming_language.html"><span class="std std-doc">Introduction to python programming language</span></a> &gt;</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="0-Index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Introdução à ciência dos dados</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="2.1-Data_Structures.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><!--NAVIGATION--></p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">1 - IPython</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#criando-um-novo-notebook">Criando um novo notebook</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#componentes-basicos-de-um-notebook">Componentes básicos de um <em>notebook</em></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#antes-de-comecar"><span style="color:red">Antes de começar</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#execucao-de-codigo-obtendo-ajuda">Execução de código, obtendo ajuda</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tab-auto-complete">Tab auto-complete</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interatividade-entrada-input-saida-output-historia-history">Interatividade: entrada (<em>input</em>), saída (<em>output</em>), história (<em>history</em>)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acessando-funcoes-do-sistema-operacional">Acessando funções do sistema operacional</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funcoes-magicas-magic">Funções ‘mágicas’ (<em>magic</em>)</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">Referências</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#voltar-ao-topo"><span class="xref myst">Voltar ao topo</span></a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ricardo R. da Silva
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

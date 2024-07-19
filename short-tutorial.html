@@ -1,0 +1,4330 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Conceitos básicos de Python e da biblioteca Pandas &#8212; Ciência dos Dados</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'short-tutorial';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="8 Análise de Agrupamento" href="8-Cluster_Analysis.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="0-Index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Ciência dos Dados</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="0-Index.html">
+                    Introdução à ciência dos dados
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1-Introduction_to_Jupyter_Platform.html">IPython</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="2.1-Data_Structures.html"><!--NAVIGATION--></a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="2.2-Logical_Operations.html">2 Conceitos básicos de programação</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.3-Control_Structures.html">2 Conceitos básicos de programação</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.4-Functions.html">2 Conceitos básicos de programação</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="2-Introduction_to_python_programming_language.html">Introdução à linguagem de programação Python</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="3-NumPy_Library.html">3  Biblioteca NumPy</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="4-Pandas_Library.html">4  Biblioteca Pandas</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="5-Scikit-Learn_Library.html">5  Biblioteca Scikit-Learn</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="6-Regression_Analysis.html">6  Regressão Linear</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="7-Classification_Analysis.html">7 Análise de Classificação</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="8-Cluster_Analysis.html">8  Análise de Agrupamento</a></li>
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Conceitos básicos de Python e da biblioteca Pandas</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fshort-tutorial.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/short-tutorial.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Conceitos básicos de Python e da biblioteca Pandas</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#antes-de-comecar"><span style="color:red">Antes de começar</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variaveis">1 - Variáveis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cadeias-de-caractere">2 - Cadeias de caractere</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conversao-de-tipos">3 - Conversão de tipos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estruturas-de-dados-listas">4 - Estruturas de dados: listas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estruturas-de-dados-dicionarios">5 - Estruturas de dados: dicionários</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#declaracoes-condicionais">6 - Declarações Condicionais</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estruturas-de-repeticao">7 - Estruturas de repetição</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funcoes">8 - Funções</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entrada-e-saida-de-arquivos-i-o">9 - Entrada e saída de arquivos (I/O)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#folhas-de-dicas-da-linguagem">10 - Folhas de dicas da linguagem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#biblioteca-pandas">11 - Biblioteca Pandas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-instalando-e-importando-bibliotecas">A - Instalando e importando bibliotecas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-importando-e-inspecionando-dados">B - Importando e inspecionando dados</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-subselecao-de-dados">C - Subseleção de dados</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-processando-os-dados">D - Processando os dados</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e-entrada-e-saida-de-dados">E - Entrada e saída de dados</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e-graficos">E - Gráficos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#voltar-ao-topo"><span class="xref myst">Voltar ao topo</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="conceitos-basicos-de-python-e-da-biblioteca-pandas">
+<h1>Conceitos básicos de Python e da biblioteca Pandas<a class="headerlink" href="#conceitos-basicos-de-python-e-da-biblioteca-pandas" title="Link to this heading">#</a></h1>
+<p><a class="reference external" href="http://colab.research.google.com/github/computational-chemical-biology/DataScience/blob/master/notebooks/short-tutorial.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
+<p><a id="top"></a> <br>
+<strong>Conteúdo do <em>Notebook</em></strong></p>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="#1"><span class="xref myst">Variáveis</span></a></p></li>
+<li><p><a class="reference internal" href="#2"><span class="xref myst">Cadeias de caractere</span></a></p></li>
+<li><p><a class="reference internal" href="#3"><span class="xref myst">Conversão de tipos</span></a></p></li>
+<li><p><a class="reference internal" href="#4"><span class="xref myst">Estruturas de dados: listas</span></a></p></li>
+<li><p><a class="reference internal" href="#5"><span class="xref myst">Estruturas de dados: dicionários</span></a></p></li>
+<li><p><a class="reference internal" href="#6"><span class="xref myst">Declarações Condicionais</span></a></p></li>
+<li><p><a class="reference internal" href="#7"><span class="xref myst">Estruturas de repetição</span></a></p></li>
+<li><p><a class="reference internal" href="#8"><span class="xref myst">Estruturas de repetição</span></a></p></li>
+<li><p><a class="reference internal" href="#9"><span class="xref myst">Entrada e saída de arquivos (I/O)</span></a></p></li>
+<li><p><a class="reference internal" href="#10"><span class="xref myst">Folhas de dicas da linguagem</span></a></p></li>
+<li><p><a class="reference internal" href="#11"><span class="xref myst">Biblioteca Pandas</span></a></p>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="#111"><span class="xref myst">Instalando e importando bibliotecas</span></a></p></li>
+<li><p><a class="reference internal" href="#112"><span class="xref myst">Importando e inspecionando dados</span></a></p></li>
+<li><p><a class="reference internal" href="#113"><span class="xref myst">Subseleção de dados</span></a></p></li>
+<li><p><a class="reference internal" href="#114"><span class="xref myst">Processando os dados</span></a></p></li>
+<li><p><a class="reference internal" href="#115"><span class="xref myst">Entrada e saída de dados</span></a></p></li>
+<li><p><a class="reference internal" href="#116"><span class="xref myst">Gráficos</span></a></p></li>
+</ol>
+</li>
+</ol>
+<section id="antes-de-comecar">
+<h2><span style="color:red">Antes de começar</span><a class="headerlink" href="#antes-de-comecar" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;./figuras/make_copy.gif&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/9be233f9fcb4a72d3d5f9e64bb5f048afee3d2d0e1cfecb578d373892da8c4e4.gif" src="_images/9be233f9fcb4a72d3d5f9e64bb5f048afee3d2d0e1cfecb578d373892da8c4e4.gif" />
+</div>
+</div>
+<p><a id="1"></a> <br></p>
+</section>
+<section id="variaveis">
+<h2>1 - Variáveis<a class="headerlink" href="#variaveis" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>       <span class="c1"># inteiro - integer</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mf">1.1</span>     <span class="c1"># fração - float</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="n">j</span>  <span class="c1"># número complexo - complex number (a + bi)</span>
+<span class="n">d</span> <span class="o">=</span> <span class="s2">&quot;abc&quot;</span>   <span class="c1"># cadeia de caracteres - string</span>
+<span class="n">e</span> <span class="o">=</span> <span class="kc">True</span>    <span class="c1"># boolean (True / False)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><a id="2"></a> <br></p>
+</section>
+<section id="cadeias-de-caractere">
+<h2>2 - Cadeias de caractere<a class="headerlink" href="#cadeias-de-caractere" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;Python&quot;</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;P&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;n&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Pyt&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Formatar caracteres</span>
+<span class="n">primeiro</span> <span class="o">=</span> <span class="s1">&#39;Alô&#39;</span>
+<span class="n">segundo</span> <span class="o">=</span> <span class="s1">&#39;Terezinha&#39;</span>
+<span class="n">nome</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">primeiro</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">segundo</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="n">nome</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Alô Terezinha&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Métodos para caracteres</span>
+<span class="n">x</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;PYTHON&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;python&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">.</span><span class="n">title</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Python&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Python&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;p&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;P&quot;</span><span class="p">,</span> <span class="s2">&quot;p&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;python&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;a&quot;</span> <span class="ow">in</span> <span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<p><a id="3"></a> <br></p>
+</section>
+<section id="conversao-de-tipos">
+<h2>3 - Conversão de tipos<a class="headerlink" href="#conversao-de-tipos" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>str
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;1&#39;</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>str
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>int
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">float</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">str</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;1&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p><a id="4"></a> <br></p>
+</section>
+<section id="estruturas-de-dados-listas">
+<h2>4 - Estruturas de dados: listas<a class="headerlink" href="#estruturas-de-dados-listas" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Criando listas</span>
+<span class="n">letras</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">letras</span><span class="p">)</span>
+<span class="n">matriz</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">matriz</span><span class="p">)</span>
+<span class="n">zeros</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">5</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">zeros</span><span class="p">)</span>
+<span class="n">combinando</span> <span class="o">=</span> <span class="n">zeros</span> <span class="o">+</span> <span class="n">letras</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">combinando</span><span class="p">)</span>
+<span class="n">numeros</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">numeros</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;]
+[[0, 1], [1, 2]]
+[0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, &#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;]
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Acessando ítens da lista</span>
+<span class="n">letras</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># &quot;a&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;a&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">letras</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;b&#39;, &#39;c&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># sub-selecionando listas </span>
+<span class="nb">print</span><span class="p">(</span><span class="n">letras</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">])</span>   <span class="c1"># &quot;a&quot;, &quot;b&quot;, &quot;c&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">letras</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>    <span class="c1"># &quot;a&quot;, &quot;b&quot;, &quot;c&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">letras</span><span class="p">[</span><span class="mi">0</span><span class="p">:])</span>    <span class="c1"># &quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">letras</span><span class="p">[:])</span>     <span class="c1"># &quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">letras</span><span class="p">[::</span><span class="mi">2</span><span class="p">])</span>   <span class="c1"># &quot;a&quot;, &quot;c&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">letras</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># &quot;d&quot;, &quot;c&quot;, &quot;b&quot;, &quot;a&quot; </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]
+[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]
+[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;]
+[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;]
+[&#39;a&#39;, &#39;c&#39;]
+[&#39;d&#39;, &#39;c&#39;, &#39;b&#39;, &#39;a&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Adicionando letras </span>
+<span class="n">letras</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;f&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">letras</span><span class="p">)</span>
+<span class="n">letras</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">letras</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;f&#39;]
+[&#39;-&#39;, &#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;f&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Removendo letras </span>
+<span class="n">letras</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">letras</span><span class="p">)</span>
+<span class="n">letras</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">letras</span><span class="p">)</span>
+<span class="n">letras</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">letras</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;-&#39;, &#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;]
+[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;]
+[&#39;a&#39;, &#39;c&#39;, &#39;d&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># encontrando elementos</span>
+<span class="s2">&quot;f&quot;</span> <span class="ow">in</span> <span class="n">letras</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;a&quot;</span> <span class="ow">in</span> <span class="n">letras</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">letras</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+</pre></div>
+</div>
+</div>
+</div>
+<p><a id="5"></a> <br></p>
+</section>
+<section id="estruturas-de-dados-dicionarios">
+<h2>5 - Estruturas de dados: dicionários<a class="headerlink" href="#estruturas-de-dados-dicionarios" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># criando dicionários</span>
+<span class="n">pontos</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pontos</span><span class="p">)</span>
+<span class="n">pontos</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pontos</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;x&#39;: 1, &#39;y&#39;: 2}
+{&#39;x&#39;: 1, &#39;y&#39;: 2}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Acessando valores dos dicionários</span>
+<span class="n">pontos</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pontos</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;x&#39;, &#39;y&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pontos</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_values([1, 2])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># criando valor em dicionário existente</span>
+<span class="n">pontos</span><span class="p">[</span><span class="s2">&quot;z&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">pontos</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;x&#39;: 1, &#39;y&#39;: 2, &#39;z&#39;: 3}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Checando chaves</span>
+<span class="s2">&quot;a&quot;</span> <span class="ow">in</span> <span class="n">pontos</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;z&quot;</span> <span class="ow">in</span> <span class="n">pontos</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">del</span> <span class="n">pontos</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">]</span>
+<span class="n">pontos</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;y&#39;: 2, &#39;z&#39;: 3}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pontos</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
+</pre></div>
+</div>
+</div>
+</div>
+<p><a id="6"></a> <br></p>
+</section>
+<section id="declaracoes-condicionais">
+<h2>6 - Declarações Condicionais<a class="headerlink" href="#declaracoes-condicionais" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="s1">&#39;Java&#39;</span><span class="p">:</span>  
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A linguagem de programação x é: &quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="s1">&#39;Java&#39;</span><span class="p">:</span>  
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A linguagem de programação x é Java&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>   
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A linguagem de programação x é: &quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A linguagem de programação x é:  Python
+</pre></div>
+</div>
+</div>
+</div>
+<p><a id="7"></a> <br></p>
+</section>
+<section id="estruturas-de-repeticao">
+<h2>7 - Estruturas de repetição<a class="headerlink" href="#estruturas-de-repeticao" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># para cada ítem em uma lista</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span> 
+    <span class="c1"># imprime o valor</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># enquanto a condição</span>
+<span class="c1"># não for satisfeita </span>
+<span class="c1"># repita as operações</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">while</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span> 
+    <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="c1"># adiciona 1 à variável n</span>
+    <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></div>
+</div>
+</div>
+</div>
+<p><a id="8"></a> <br></p>
+</section>
+<section id="funcoes">
+<h2>8 - Funções<a class="headerlink" href="#funcoes" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># definir uma função para executar</span>
+<span class="c1"># uma tarefa específica</span>
+<span class="k">def</span> <span class="nf">minha_soma</span><span class="p">(</span><span class="n">valor_1</span><span class="p">,</span> <span class="n">valor_2</span><span class="p">):</span>
+     <span class="nb">print</span><span class="p">(</span><span class="n">valor_1</span><span class="p">,</span> <span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="n">valor_2</span><span class="p">,</span> <span class="s1">&#39;=&#39;</span><span class="p">,</span> <span class="n">valor_1</span><span class="o">+</span><span class="n">valor_2</span><span class="p">)</span>
+
+<span class="c1"># executar a função</span>
+<span class="n">minha_soma</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10 + 3 = 13
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Uma pode retornar um valor</span>
+<span class="k">def</span> <span class="nf">minha_soma_nova</span><span class="p">(</span><span class="n">valor_1</span><span class="p">,</span> <span class="n">valor_2</span><span class="p">):</span>
+     <span class="k">return</span> <span class="n">valor_1</span><span class="o">+</span><span class="n">valor_2</span>
+    
+<span class="n">a</span> <span class="o">=</span> <span class="n">minha_soma</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">minha_soma_nova</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10 + 3 = 13
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># a função &#39;minha_soma&#39; executa uma impressão</span>
+<span class="c1"># e não retorna o valor, por isso</span>
+<span class="c1"># a variável &#39;a&#39; está vazia</span>
+<span class="n">a</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># a função &#39;minha_soma_nova&#39; executa uma impressão</span>
+<span class="c1"># e retorna o valor, por isso</span>
+<span class="c1"># a variável &#39;b&#39; não está vazia</span>
+<span class="n">b</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>13
+</pre></div>
+</div>
+</div>
+</div>
+<p><a id="9"></a> <br></p>
+</section>
+<section id="entrada-e-saida-de-arquivos-i-o">
+<h2>9 - Entrada e saída de arquivos (I/O)<a class="headerlink" href="#entrada-e-saida-de-arquivos-i-o" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;arquivo_1.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="c1"># a função open cria um manipulador de arquivos (handler),</span>
+                               <span class="c1"># que é atribuído para a variável f, </span>
+                               <span class="c1"># enquanto &quot;w&quot; é o parâmetro que indica o modo (w para write)</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">item</span><span class="p">))</span> <span class="c1"># escreve o número para o arquivo</span>
+    <span class="c1"># adicione uma caractere que faz com que o arquivo mude de linha</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span> 
+    <span class="c1"># alternativamente podemos fazer:</span>
+    <span class="c1"># f.write(str(item)+&quot;\n&quot;) # como vimos anteriormente `+` concatena caracteres</span>
+<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span> <span class="c1"># fecha o manipulador de arquivos por motivos de segurança</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;arquivo_1.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="c1"># modo leitura</span>
+<span class="n">conteudo</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">f</span><span class="p">]</span> <span class="c1"># lembra se do list comprehension? Se não, volte a seção anterior</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">conteudo</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;0\n&#39;, &#39;1\n&#39;, &#39;2\n&#39;, &#39;3\n&#39;, &#39;4\n&#39;, &#39;5\n&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p><a id="10"></a> <br></p>
+</section>
+<section id="folhas-de-dicas-da-linguagem">
+<h2>10 - Folhas de dicas da linguagem<a class="headerlink" href="#folhas-de-dicas-da-linguagem" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;./figuras/Python3_reference_cheat_sheet_front.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/50c4a1be2597fe6f6f14687f8f2e991929a88a4395dbbad76d3a198e93f236e9.png" src="_images/50c4a1be2597fe6f6f14687f8f2e991929a88a4395dbbad76d3a198e93f236e9.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;./figuras/Python3_reference_cheat_sheet_back.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/a1a0bb6e0c68b7a1f9d1767671f827e300d0696325bbbe983f11e2073412eef9.png" src="_images/a1a0bb6e0c68b7a1f9d1767671f827e300d0696325bbbe983f11e2073412eef9.png" />
+</div>
+</div>
+<p><a id="11"></a> <br></p>
+</section>
+<section id="biblioteca-pandas">
+<h2>11 - Biblioteca Pandas<a class="headerlink" href="#biblioteca-pandas" title="Link to this heading">#</a></h2>
+<p><a id="111"></a> <br></p>
+<section id="a-instalando-e-importando-bibliotecas">
+<h3>A - Instalando e importando bibliotecas<a class="headerlink" href="#a-instalando-e-importando-bibliotecas" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>xlsxwriter<span class="w"> </span>xlrd
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: xlsxwriter in /home/rsilva/miniconda3/envs/datascience/lib/python3.12/site-packages (3.2.0)
+Requirement already satisfied: xlrd in /home/rsilva/miniconda3/envs/datascience/lib/python3.12/site-packages (2.0.1)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># https://towardsdatascience.com/intro-to-pandas-for-excel-super-users-dac1b38f12b0</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># permite que os plots sejam exibidos no notebook</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<p><a id="112"></a> <br></p>
+</section>
+<section id="b-importando-e-inspecionando-dados">
+<h3>B - Importando e inspecionando dados<a class="headerlink" href="#b-importando-e-inspecionando-dados" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Carregar o arquivo com os dados</span>
+<span class="n">sy1617</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;dados/CPS-Progress-Reports_SY1617.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;School_ID&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># inspecionar cabeçalho</span>
+<span class="n">sy1617</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Short_Name</th>
+      <th>Long_Name</th>
+      <th>School_Type</th>
+      <th>Primary_Category</th>
+      <th>Address</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Zip</th>
+      <th>Phone</th>
+      <th>Fax</th>
+      <th>...</th>
+      <th>Supportive_School_Award_Desc</th>
+      <th>Parent_Survey_Results_Year</th>
+      <th>School_Latitude</th>
+      <th>School_Longitude</th>
+      <th>Location</th>
+      <th>Community Areas</th>
+      <th>Zip Codes</th>
+      <th>Boundaries - ZIP Codes</th>
+      <th>Census Tracts</th>
+      <th>Wards</th>
+    </tr>
+    <tr>
+      <th>School_ID</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>609874</th>
+      <td>DIRKSEN</td>
+      <td>Everett McKinley Dirksen Elementary School</td>
+      <td>Neighborhood</td>
+      <td>ES</td>
+      <td>8601 W FOSTER AVE</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60656</td>
+      <td>7735341090</td>
+      <td>7.735341e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.973715</td>
+      <td>-87.841041</td>
+      <td>8601 W FOSTER AVE\nChicago, Illinois 60656\n(4...</td>
+      <td>75</td>
+      <td>4448</td>
+      <td>31</td>
+      <td>8</td>
+      <td>29</td>
+    </tr>
+    <tr>
+      <th>610390</th>
+      <td>RICKOVER MILITARY HS</td>
+      <td>Hyman G Rickover Naval Academy High School</td>
+      <td>Military academy</td>
+      <td>HS</td>
+      <td>5900 N GLENWOOD AVE</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60660</td>
+      <td>7735342890</td>
+      <td>7.735343e+09</td>
+      <td>...</td>
+      <td>This school has been rated Established for its...</td>
+      <td>2016.0</td>
+      <td>41.989021</td>
+      <td>-87.665789</td>
+      <td>5900 N GLENWOOD AVE\nChicago, Illinois 60660\n...</td>
+      <td>76</td>
+      <td>4451</td>
+      <td>14</td>
+      <td>539</td>
+      <td>16</td>
+    </tr>
+    <tr>
+      <th>610070</th>
+      <td>MCPHERSON</td>
+      <td>James B McPherson Elementary School</td>
+      <td>Neighborhood</td>
+      <td>ES</td>
+      <td>4728 N WOLCOTT AVE</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60640</td>
+      <td>7735342625</td>
+      <td>7.735343e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.967847</td>
+      <td>-87.676288</td>
+      <td>4728 N WOLCOTT AVE\nChicago, Illinois 60640\n(...</td>
+      <td>6</td>
+      <td>22616</td>
+      <td>15</td>
+      <td>225</td>
+      <td>18</td>
+    </tr>
+    <tr>
+      <th>400117</th>
+      <td>NOBLE - HANSBERRY HS</td>
+      <td>Noble - Hansberry College Prep</td>
+      <td>Charter</td>
+      <td>HS</td>
+      <td>8748 S ABERDEEN ST</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60620</td>
+      <td>7737293400</td>
+      <td>7.733042e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.734442</td>
+      <td>-87.650987</td>
+      <td>8748 S ABERDEEN ST\nChicago, Illinois 60620\n(...</td>
+      <td>70</td>
+      <td>21554</td>
+      <td>59</td>
+      <td>533</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>610251</th>
+      <td>CATHER</td>
+      <td>Willa Cather Elementary School</td>
+      <td>Neighborhood</td>
+      <td>ES</td>
+      <td>2908 W WASHINGTON BLVD</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60612</td>
+      <td>7735346780</td>
+      <td>7.735347e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.882950</td>
+      <td>-87.699187</td>
+      <td>2908 W WASHINGTON BLVD\nChicago, Illinois 6061...</td>
+      <td>28</td>
+      <td>21184</td>
+      <td>28</td>
+      <td>50</td>
+      <td>46</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 165 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># inspecionar dimensões do dataframe</span>
+<span class="n">sy1617</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(661, 165)
+</pre></div>
+</div>
+</div>
+</div>
+<p><a id="113"></a> <br></p>
+</section>
+<section id="c-subselecao-de-dados">
+<h3>C - Subseleção de dados<a class="headerlink" href="#c-subselecao-de-dados" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># selecionar coluna específica</span>
+<span class="n">sy1617</span><span class="p">[</span><span class="s1">&#39;School_Type&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>School_ID
+609874        Neighborhood
+610390    Military academy
+610070        Neighborhood
+400117             Charter
+610251        Neighborhood
+                ...       
+400048             Charter
+609821        Neighborhood
+609723        Neighborhood
+610305        Neighborhood
+610588        Neighborhood
+Name: School_Type, Length: 661, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># selecionar multiplas colunas e inspecionar </span>
+<span class="c1"># cabeçalho</span>
+<span class="n">sy1617</span><span class="p">[[</span><span class="s1">&#39;School_Type&#39;</span><span class="p">,</span> <span class="s1">&#39;Primary_Category&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>School_Type</th>
+      <th>Primary_Category</th>
+    </tr>
+    <tr>
+      <th>School_ID</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>609874</th>
+      <td>Neighborhood</td>
+      <td>ES</td>
+    </tr>
+    <tr>
+      <th>610390</th>
+      <td>Military academy</td>
+      <td>HS</td>
+    </tr>
+    <tr>
+      <th>610070</th>
+      <td>Neighborhood</td>
+      <td>ES</td>
+    </tr>
+    <tr>
+      <th>400117</th>
+      <td>Charter</td>
+      <td>HS</td>
+    </tr>
+    <tr>
+      <th>610251</th>
+      <td>Neighborhood</td>
+      <td>ES</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Selecionar linha pelo índice</span>
+<span class="n">sy1617</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">609874</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Short_Name                                             DIRKSEN
+Long_Name           Everett McKinley Dirksen Elementary School
+School_Type                                       Neighborhood
+Primary_Category                                            ES
+Address                                      8601 W FOSTER AVE
+Name: 609874, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Selecionar linha pelo posição</span>
+<span class="n">sy1617</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Short_Name                                             DIRKSEN
+Long_Name           Everett McKinley Dirksen Elementary School
+School_Type                                       Neighborhood
+Primary_Category                                            ES
+Address                                      8601 W FOSTER AVE
+Name: 609874, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># selecionar célula da tabela</span>
+<span class="n">sy1617</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">609874</span><span class="p">][</span><span class="s1">&#39;School_Type&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Neighborhood&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># outra forma de selecionar célula da tabela</span>
+<span class="c1"># utilizando índice e nome da coluna</span>
+<span class="n">sy1617</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">609874</span><span class="p">,</span> <span class="s1">&#39;School_Type&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Neighborhood&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># outra forma de selecionar célula da tabela</span>
+<span class="c1"># utilizando posição</span>
+<span class="n">sy1617</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Neighborhood&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p><a id="114"></a> <br></p>
+</section>
+<section id="d-processando-os-dados">
+<h3>D - Processando os dados<a class="headerlink" href="#d-processando-os-dados" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># método &#39;describe&#39; apresenta o súmario estatístico</span>
+<span class="c1"># para colunas selecionadas</span>
+
+<span class="c1"># colunas com texto</span>
+
+<span class="n">sy1617</span><span class="p">[[</span><span class="s1">&#39;School_Type&#39;</span><span class="p">,</span> <span class="s1">&#39;Primary_Category&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>School_Type</th>
+      <th>Primary_Category</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>661</td>
+      <td>661</td>
+    </tr>
+    <tr>
+      <th>unique</th>
+      <td>12</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>top</th>
+      <td>Neighborhood</td>
+      <td>ES</td>
+    </tr>
+    <tr>
+      <th>freq</th>
+      <td>400</td>
+      <td>470</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># colunas numéricas</span>
+<span class="n">sy1617</span><span class="p">[[</span><span class="s1">&#39;School_Survey_Student_Response_Rate_Pct&#39;</span><span class="p">,</span> <span class="s1">&#39;Suspensions_Per_100_Students_Year_1_Pct&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>School_Survey_Student_Response_Rate_Pct</th>
+      <th>Suspensions_Per_100_Students_Year_1_Pct</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>657.000000</td>
+      <td>514.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>80.110198</td>
+      <td>8.271595</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>24.769436</td>
+      <td>17.292914</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>75.700000</td>
+      <td>0.825000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>88.500000</td>
+      <td>2.550000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>95.800000</td>
+      <td>7.800000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>99.900000</td>
+      <td>188.700000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Selecionando sub-conjuntos de dados</span>
+<span class="n">is_charter</span> <span class="o">=</span> <span class="n">sy1617</span><span class="p">[</span><span class="s1">&#39;School_Type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Charter&#39;</span>
+
+<span class="n">sy1617</span><span class="p">[</span><span class="n">is_charter</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(123, 165)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Selecionar múltiplas classes</span>
+<span class="n">charter_magnet</span> <span class="o">=</span> <span class="n">sy1617</span><span class="p">[</span><span class="s1">&#39;School_Type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;Charter&#39;</span><span class="p">,</span><span class="s1">&#39;Magnet&#39;</span><span class="p">])</span>
+
+<span class="n">sy1617</span><span class="p">[</span><span class="n">charter_magnet</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(166, 165)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Selecionar baseado em variável quantitativa</span>
+<span class="n">gt80</span> <span class="o">=</span> <span class="n">sy1617</span><span class="p">[</span><span class="s1">&#39;School_Survey_Student_Response_Rate_Pct&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">80</span>
+
+<span class="n">sy1617</span><span class="p">[</span><span class="n">gt80</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(455, 165)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Combinar seleções com operadores lógicos</span>
+<span class="n">sy1617</span><span class="p">[</span><span class="n">is_charter</span> <span class="o">&amp;</span> <span class="n">gt80</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(61, 165)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sy1617</span><span class="p">[[</span><span class="s1">&#39;Primary_Category&#39;</span><span class="p">,</span> <span class="s1">&#39;Short_Name&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Primary_Category</th>
+      <th>Short_Name</th>
+    </tr>
+    <tr>
+      <th>School_ID</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>609874</th>
+      <td>ES</td>
+      <td>DIRKSEN</td>
+    </tr>
+    <tr>
+      <th>610390</th>
+      <td>HS</td>
+      <td>RICKOVER MILITARY HS</td>
+    </tr>
+    <tr>
+      <th>610070</th>
+      <td>ES</td>
+      <td>MCPHERSON</td>
+    </tr>
+    <tr>
+      <th>400117</th>
+      <td>HS</td>
+      <td>NOBLE - HANSBERRY HS</td>
+    </tr>
+    <tr>
+      <th>610251</th>
+      <td>ES</td>
+      <td>CATHER</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ordenar alfabeticamente</span>
+<span class="n">sy1617_ordenado</span> <span class="o">=</span> <span class="n">sy1617</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Primary_Category&#39;</span><span class="p">,</span> <span class="s1">&#39;Short_Name&#39;</span><span class="p">])</span>
+
+<span class="n">sy1617_ordenado</span><span class="p">[[</span><span class="s1">&#39;Primary_Category&#39;</span><span class="p">,</span> <span class="s1">&#39;Short_Name&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Primary_Category</th>
+      <th>Short_Name</th>
+    </tr>
+    <tr>
+      <th>School_ID</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>400153</th>
+      <td>ES</td>
+      <td>ACERO - BRIGHTON PARK</td>
+    </tr>
+    <tr>
+      <th>400101</th>
+      <td>ES</td>
+      <td>ACERO - CISNEROS</td>
+    </tr>
+    <tr>
+      <th>400120</th>
+      <td>ES</td>
+      <td>ACERO - CLEMENTE</td>
+    </tr>
+    <tr>
+      <th>400121</th>
+      <td>ES</td>
+      <td>ACERO - DE LA CRUZ</td>
+    </tr>
+    <tr>
+      <th>400081</th>
+      <td>ES</td>
+      <td>ACERO - DE LAS CASAS</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Filtrar, agregar e fazer cálculos</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">sy1617</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s1">&#39;School_Survey_Student_Response_Rate_Pct&#39;</span><span class="p">,</span> 
+               <span class="n">index</span><span class="o">=</span><span class="s1">&#39;School_Type&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Primary_Category&#39;</span><span class="p">],</span> 
+               <span class="n">aggfunc</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_32188/3201481293.py:2: FutureWarning: The provided callable &lt;function mean at 0x7f1328263b00&gt; is currently using DataFrameGroupBy.mean. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string &quot;mean&quot; instead.
+  pd.pivot_table(sy1617, values=&#39;School_Survey_Student_Response_Rate_Pct&#39;,
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Primary_Category</th>
+      <th>ES</th>
+      <th>HS</th>
+      <th>MS</th>
+    </tr>
+    <tr>
+      <th>School_Type</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Career academy</th>
+      <td>NaN</td>
+      <td>65.375000</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>Charter</th>
+      <td>66.033333</td>
+      <td>69.556061</td>
+      <td>99.400000</td>
+    </tr>
+    <tr>
+      <th>Citywide-Option</th>
+      <td>0.000000</td>
+      <td>65.235000</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>Classical</th>
+      <td>98.320000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>Contract</th>
+      <td>45.700000</td>
+      <td>84.450000</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>Magnet</th>
+      <td>88.722222</td>
+      <td>84.342857</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>Military academy</th>
+      <td>NaN</td>
+      <td>87.883333</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>Neighborhood</th>
+      <td>84.537681</td>
+      <td>80.424444</td>
+      <td>93.814286</td>
+    </tr>
+    <tr>
+      <th>Regional gifted center</th>
+      <td>93.380000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>Selective enrollment</th>
+      <td>NaN</td>
+      <td>82.190909</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>Small</th>
+      <td>87.466667</td>
+      <td>77.571429</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>Special Education</th>
+      <td>0.000000</td>
+      <td>58.125000</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tab1</span> <span class="o">=</span> <span class="n">sy1617</span><span class="p">[[</span><span class="s1">&#39;Primary_Category&#39;</span><span class="p">,</span> <span class="s1">&#39;Short_Name&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">tab2</span> <span class="o">=</span> <span class="n">sy1617</span><span class="p">[[</span><span class="s1">&#39;Primary_Category&#39;</span><span class="p">,</span><span class="s1">&#39;School_Type&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Primary_Category&#39;</span><span class="p">])</span>
+<span class="n">tab1</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Primary_Category</th>
+      <th>Short_Name</th>
+    </tr>
+    <tr>
+      <th>School_ID</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>609874</th>
+      <td>ES</td>
+      <td>DIRKSEN</td>
+    </tr>
+    <tr>
+      <th>610390</th>
+      <td>HS</td>
+      <td>RICKOVER MILITARY HS</td>
+    </tr>
+    <tr>
+      <th>610070</th>
+      <td>ES</td>
+      <td>MCPHERSON</td>
+    </tr>
+    <tr>
+      <th>400117</th>
+      <td>HS</td>
+      <td>NOBLE - HANSBERRY HS</td>
+    </tr>
+    <tr>
+      <th>610251</th>
+      <td>ES</td>
+      <td>CATHER</td>
+    </tr>
+    <tr>
+      <th>610268</th>
+      <td>ES</td>
+      <td>ASHE</td>
+    </tr>
+    <tr>
+      <th>610089</th>
+      <td>ES</td>
+      <td>MURPHY</td>
+    </tr>
+    <tr>
+      <th>610158</th>
+      <td>ES</td>
+      <td>SAYRE</td>
+    </tr>
+    <tr>
+      <th>609866</th>
+      <td>ES</td>
+      <td>COONLEY</td>
+    </tr>
+    <tr>
+      <th>610218</th>
+      <td>ES</td>
+      <td>WARREN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tab2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Primary_Category</th>
+      <th>School_Type</th>
+    </tr>
+    <tr>
+      <th>School_ID</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>609874</th>
+      <td>ES</td>
+      <td>Neighborhood</td>
+    </tr>
+    <tr>
+      <th>610070</th>
+      <td>ES</td>
+      <td>Neighborhood</td>
+    </tr>
+    <tr>
+      <th>610251</th>
+      <td>ES</td>
+      <td>Neighborhood</td>
+    </tr>
+    <tr>
+      <th>610268</th>
+      <td>ES</td>
+      <td>Neighborhood</td>
+    </tr>
+    <tr>
+      <th>610089</th>
+      <td>ES</td>
+      <td>Neighborhood</td>
+    </tr>
+    <tr>
+      <th>610158</th>
+      <td>ES</td>
+      <td>Neighborhood</td>
+    </tr>
+    <tr>
+      <th>609866</th>
+      <td>ES</td>
+      <td>Regional gifted center</td>
+    </tr>
+    <tr>
+      <th>610218</th>
+      <td>ES</td>
+      <td>Neighborhood</td>
+    </tr>
+    <tr>
+      <th>610090</th>
+      <td>ES</td>
+      <td>Magnet</td>
+    </tr>
+    <tr>
+      <th>609986</th>
+      <td>ES</td>
+      <td>Neighborhood</td>
+    </tr>
+    <tr>
+      <th>400046</th>
+      <td>ES</td>
+      <td>Charter</td>
+    </tr>
+    <tr>
+      <th>610128</th>
+      <td>ES</td>
+      <td>Neighborhood</td>
+    </tr>
+    <tr>
+      <th>610116</th>
+      <td>ES</td>
+      <td>Neighborhood</td>
+    </tr>
+    <tr>
+      <th>610390</th>
+      <td>HS</td>
+      <td>Military academy</td>
+    </tr>
+    <tr>
+      <th>400117</th>
+      <td>HS</td>
+      <td>Charter</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">tab1</span><span class="p">,</span> <span class="n">tab2</span><span class="p">,</span> <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Primary_Category_x</th>
+      <th>Short_Name</th>
+      <th>Primary_Category_y</th>
+      <th>School_Type</th>
+    </tr>
+    <tr>
+      <th>School_ID</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>609874</th>
+      <td>ES</td>
+      <td>DIRKSEN</td>
+      <td>ES</td>
+      <td>Neighborhood</td>
+    </tr>
+    <tr>
+      <th>610390</th>
+      <td>HS</td>
+      <td>RICKOVER MILITARY HS</td>
+      <td>HS</td>
+      <td>Military academy</td>
+    </tr>
+    <tr>
+      <th>610070</th>
+      <td>ES</td>
+      <td>MCPHERSON</td>
+      <td>ES</td>
+      <td>Neighborhood</td>
+    </tr>
+    <tr>
+      <th>400117</th>
+      <td>HS</td>
+      <td>NOBLE - HANSBERRY HS</td>
+      <td>HS</td>
+      <td>Charter</td>
+    </tr>
+    <tr>
+      <th>610251</th>
+      <td>ES</td>
+      <td>CATHER</td>
+      <td>ES</td>
+      <td>Neighborhood</td>
+    </tr>
+    <tr>
+      <th>610268</th>
+      <td>ES</td>
+      <td>ASHE</td>
+      <td>ES</td>
+      <td>Neighborhood</td>
+    </tr>
+    <tr>
+      <th>610089</th>
+      <td>ES</td>
+      <td>MURPHY</td>
+      <td>ES</td>
+      <td>Neighborhood</td>
+    </tr>
+    <tr>
+      <th>610158</th>
+      <td>ES</td>
+      <td>SAYRE</td>
+      <td>ES</td>
+      <td>Neighborhood</td>
+    </tr>
+    <tr>
+      <th>609866</th>
+      <td>ES</td>
+      <td>COONLEY</td>
+      <td>ES</td>
+      <td>Regional gifted center</td>
+    </tr>
+    <tr>
+      <th>610218</th>
+      <td>ES</td>
+      <td>WARREN</td>
+      <td>ES</td>
+      <td>Neighborhood</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p><a id="115"></a> <br></p>
+</section>
+<section id="e-entrada-e-saida-de-dados">
+<h3>E - Entrada e saída de dados<a class="headerlink" href="#e-entrada-e-saida-de-dados" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># criar um objeto que permite escrever um arquivo excel</span>
+<span class="n">escritor</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">ExcelWriter</span><span class="p">(</span><span class="s1">&#39;tabela.xls&#39;</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;xlsxwriter&#39;</span><span class="p">)</span>
+
+<span class="c1"># converter o dataframe para um formato de dados que pode ser escrito</span>
+<span class="n">sy1617</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="n">escritor</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Sheet1&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># escrever o arrquivo e fechar o escritor</span>
+<span class="n">escritor</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">74</span><span class="p">],</span> <span class="n">line</span> <span class="mi">8</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">sy1617</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="n">escritor</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Sheet1&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="c1"># escrever o arrquivo e fechar o escritor</span>
+<span class="ne">----&gt; </span><span class="mi">8</span> <span class="n">escritor</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+<span class="ne">AttributeError</span>: &#39;XlsxWriter&#39; object has no attribute &#39;save&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># salvar arquivo csv</span>
+<span class="n">sy1617</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;tabela.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ler arquivo excel</span>
+<span class="n">leitor</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;tabela.xls&#39;</span><span class="p">)</span>
+
+<span class="n">leitor</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Short_Name</th>
+      <th>Long_Name</th>
+      <th>School_Type</th>
+      <th>Primary_Category</th>
+      <th>Address</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Zip</th>
+      <th>Phone</th>
+      <th>Fax</th>
+      <th>...</th>
+      <th>Supportive_School_Award_Desc</th>
+      <th>Parent_Survey_Results_Year</th>
+      <th>School_Latitude</th>
+      <th>School_Longitude</th>
+      <th>Location</th>
+      <th>Community Areas</th>
+      <th>Zip Codes</th>
+      <th>Boundaries - ZIP Codes</th>
+      <th>Census Tracts</th>
+      <th>Wards</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>DIRKSEN</td>
+      <td>Everett McKinley Dirksen Elementary School</td>
+      <td>Neighborhood</td>
+      <td>ES</td>
+      <td>8601 W FOSTER AVE</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60656</td>
+      <td>7735341090</td>
+      <td>7.735341e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.973715</td>
+      <td>-87.841041</td>
+      <td>8601 W FOSTER AVE\nChicago, Illinois 60656\n(4...</td>
+      <td>75</td>
+      <td>4448</td>
+      <td>31</td>
+      <td>8</td>
+      <td>29</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>RICKOVER MILITARY HS</td>
+      <td>Hyman G Rickover Naval Academy High School</td>
+      <td>Military academy</td>
+      <td>HS</td>
+      <td>5900 N GLENWOOD AVE</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60660</td>
+      <td>7735342890</td>
+      <td>7.735343e+09</td>
+      <td>...</td>
+      <td>This school has been rated Established for its...</td>
+      <td>2016.0</td>
+      <td>41.989021</td>
+      <td>-87.665789</td>
+      <td>5900 N GLENWOOD AVE\nChicago, Illinois 60660\n...</td>
+      <td>76</td>
+      <td>4451</td>
+      <td>14</td>
+      <td>539</td>
+      <td>16</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>MCPHERSON</td>
+      <td>James B McPherson Elementary School</td>
+      <td>Neighborhood</td>
+      <td>ES</td>
+      <td>4728 N WOLCOTT AVE</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60640</td>
+      <td>7735342625</td>
+      <td>7.735343e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.967847</td>
+      <td>-87.676288</td>
+      <td>4728 N WOLCOTT AVE\nChicago, Illinois 60640\n(...</td>
+      <td>6</td>
+      <td>22616</td>
+      <td>15</td>
+      <td>225</td>
+      <td>18</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>NOBLE - HANSBERRY HS</td>
+      <td>Noble - Hansberry College Prep</td>
+      <td>Charter</td>
+      <td>HS</td>
+      <td>8748 S ABERDEEN ST</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60620</td>
+      <td>7737293400</td>
+      <td>7.733042e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.734442</td>
+      <td>-87.650987</td>
+      <td>8748 S ABERDEEN ST\nChicago, Illinois 60620\n(...</td>
+      <td>70</td>
+      <td>21554</td>
+      <td>59</td>
+      <td>533</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>CATHER</td>
+      <td>Willa Cather Elementary School</td>
+      <td>Neighborhood</td>
+      <td>ES</td>
+      <td>2908 W WASHINGTON BLVD</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60612</td>
+      <td>7735346780</td>
+      <td>7.735347e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.882950</td>
+      <td>-87.699187</td>
+      <td>2908 W WASHINGTON BLVD\nChicago, Illinois 6061...</td>
+      <td>28</td>
+      <td>21184</td>
+      <td>28</td>
+      <td>50</td>
+      <td>46</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>ASHE</td>
+      <td>Arthur R Ashe Elementary School</td>
+      <td>Neighborhood</td>
+      <td>ES</td>
+      <td>8505 S INGLESIDE AVE</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60619</td>
+      <td>7735353550</td>
+      <td>7.735353e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.740184</td>
+      <td>-87.601174</td>
+      <td>8505 S INGLESIDE AVE\nChicago, Illinois 60619\...</td>
+      <td>40</td>
+      <td>21546</td>
+      <td>61</td>
+      <td>141</td>
+      <td>35</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>MURPHY</td>
+      <td>John B Murphy Elementary School</td>
+      <td>Neighborhood</td>
+      <td>ES</td>
+      <td>3539 W GRACE ST</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60618</td>
+      <td>7735345223</td>
+      <td>7.735345e+09</td>
+      <td>...</td>
+      <td>This school has been rated Exemplary for its s...</td>
+      <td>2016.0</td>
+      <td>41.950078</td>
+      <td>-87.716832</td>
+      <td>3539 W GRACE ST\nChicago, Illinois 60618\n(41....</td>
+      <td>16</td>
+      <td>21538</td>
+      <td>39</td>
+      <td>325</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>SAYRE</td>
+      <td>Harriet E Sayre Elementary Language Academy</td>
+      <td>Neighborhood</td>
+      <td>ES</td>
+      <td>1850 N NEWLAND AVE</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60707</td>
+      <td>7735343351</td>
+      <td>7.735343e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.914151</td>
+      <td>-87.798721</td>
+      <td>1850 N NEWLAND AVE\nChicago, Illinois 60707\n(...</td>
+      <td>26</td>
+      <td>4454</td>
+      <td>3</td>
+      <td>598</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>COONLEY</td>
+      <td>John C Coonley Elementary School</td>
+      <td>Regional gifted center</td>
+      <td>ES</td>
+      <td>4046 N LEAVITT ST</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60618</td>
+      <td>7735345140</td>
+      <td>7.735345e+09</td>
+      <td>...</td>
+      <td>This school has been rated Established for its...</td>
+      <td>2016.0</td>
+      <td>41.955553</td>
+      <td>-87.683765</td>
+      <td>4046 N LEAVITT ST\nChicago, Illinois 60618\n(4...</td>
+      <td>46</td>
+      <td>21538</td>
+      <td>39</td>
+      <td>623</td>
+      <td>18</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>WARREN</td>
+      <td>Joseph Warren Elementary School</td>
+      <td>Neighborhood</td>
+      <td>ES</td>
+      <td>9239 S JEFFERY AVE</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60617</td>
+      <td>7735356625</td>
+      <td>7.735357e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.726763</td>
+      <td>-87.575353</td>
+      <td>9239 S JEFFERY AVE\nChicago, Illinois 60617\n(...</td>
+      <td>44</td>
+      <td>21202</td>
+      <td>25</td>
+      <td>492</td>
+      <td>37</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>MURRAY</td>
+      <td>Phillip Murray Elementary Language Academy</td>
+      <td>Magnet</td>
+      <td>ES</td>
+      <td>5335 S KENWOOD AVE</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60615</td>
+      <td>7735350585</td>
+      <td>7.735351e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.798535</td>
+      <td>-87.593340</td>
+      <td>5335 S KENWOOD AVE\nChicago, Illinois 60615\n(...</td>
+      <td>8</td>
+      <td>21192</td>
+      <td>10</td>
+      <td>499</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>HENDERSON</td>
+      <td>Charles R Henderson Elementary School</td>
+      <td>Neighborhood</td>
+      <td>ES</td>
+      <td>5650 S WOLCOTT AVE</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60636</td>
+      <td>7735359080</td>
+      <td>7.735359e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.790591</td>
+      <td>-87.671887</td>
+      <td>5650 S WOLCOTT AVE\nChicago, Illinois 60636\n(...</td>
+      <td>65</td>
+      <td>22257</td>
+      <td>23</td>
+      <td>345</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>LEARN - BUTLER</td>
+      <td>L.E.A.R.N. - Romano Butler Campus</td>
+      <td>Charter</td>
+      <td>ES</td>
+      <td>1132 S HOMAN AVE</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60624</td>
+      <td>7737220200</td>
+      <td>7.738260e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.867273</td>
+      <td>-87.710679</td>
+      <td>1132 S HOMAN AVE\nChicago, Illinois 60624\n(41...</td>
+      <td>30</td>
+      <td>21572</td>
+      <td>30</td>
+      <td>98</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>GARVEY</td>
+      <td>Marcus Moziah Garvey Elementary School</td>
+      <td>Neighborhood</td>
+      <td>ES</td>
+      <td>10309 S MORGAN ST</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60643</td>
+      <td>7735352763</td>
+      <td>7.735353e+09</td>
+      <td>...</td>
+      <td>This school has been rated Exemplary for its s...</td>
+      <td>2016.0</td>
+      <td>41.706603</td>
+      <td>-87.647577</td>
+      <td>10309 S MORGAN ST\nChicago, Illinois 60643\n(4...</td>
+      <td>72</td>
+      <td>22212</td>
+      <td>13</td>
+      <td>595</td>
+      <td>22</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>PARKSIDE</td>
+      <td>Parkside Elementary Community Academy</td>
+      <td>Neighborhood</td>
+      <td>ES</td>
+      <td>6938 S EAST END AVE</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60649</td>
+      <td>7735350940</td>
+      <td>7.735351e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.768555</td>
+      <td>-87.582954</td>
+      <td>6938 S EAST END AVE\nChicago, Illinois 60649\n...</td>
+      <td>39</td>
+      <td>22538</td>
+      <td>24</td>
+      <td>381</td>
+      <td>33</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>HARVARD</td>
+      <td>John Harvard Elementary School of Excellence</td>
+      <td>Neighborhood</td>
+      <td>ES</td>
+      <td>7525 S HARVARD</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60620</td>
+      <td>7735353045</td>
+      <td>7.735353e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.757341</td>
+      <td>-87.632737</td>
+      <td>7525 S HARVARD\nChicago, Illinois 60620\n(41.7...</td>
+      <td>67</td>
+      <td>21554</td>
+      <td>59</td>
+      <td>495</td>
+      <td>32</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>LEE</td>
+      <td>Richard Henry Lee Elementary School</td>
+      <td>Neighborhood</td>
+      <td>ES</td>
+      <td>6448 S TRIPP AVE</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60629</td>
+      <td>7735352255</td>
+      <td>7.735352e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.775305</td>
+      <td>-87.728884</td>
+      <td>6448 S TRIPP AVE\nChicago, Illinois 60629\n(41...</td>
+      <td>63</td>
+      <td>21867</td>
+      <td>58</td>
+      <td>6</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>FINKL</td>
+      <td>William F Finkl Elementary School</td>
+      <td>Neighborhood</td>
+      <td>ES</td>
+      <td>2332 S WESTERN AVE</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60608</td>
+      <td>7735355850</td>
+      <td>7.735354e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.849215</td>
+      <td>-87.685668</td>
+      <td>2332 S WESTERN AVE\nChicago, Illinois 60608\n(...</td>
+      <td>33</td>
+      <td>14920</td>
+      <td>43</td>
+      <td>204</td>
+      <td>26</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>VON STEUBEN HS</td>
+      <td>Friedrich W von Steuben Metropolitan Science HS</td>
+      <td>Magnet</td>
+      <td>HS</td>
+      <td>5039 N KIMBALL AVE</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60625</td>
+      <td>7735345100</td>
+      <td>7.735345e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.973185</td>
+      <td>-87.713386</td>
+      <td>5039 N KIMBALL AVE\nChicago, Illinois 60625\n(...</td>
+      <td>13</td>
+      <td>21849</td>
+      <td>20</td>
+      <td>167</td>
+      <td>38</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>RAVENSWOOD</td>
+      <td>Ravenswood Elementary School</td>
+      <td>Neighborhood</td>
+      <td>ES</td>
+      <td>4332 N PAULINA ST</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60613</td>
+      <td>7735345525</td>
+      <td>7.735346e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.960746</td>
+      <td>-87.670922</td>
+      <td>4332 N PAULINA ST\nChicago, Illinois 60613\n(4...</td>
+      <td>57</td>
+      <td>21186</td>
+      <td>53</td>
+      <td>651</td>
+      <td>18</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>CLINTON</td>
+      <td>DeWitt Clinton Elementary School</td>
+      <td>Neighborhood</td>
+      <td>ES</td>
+      <td>6110 N FAIRFIELD AVE</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60659</td>
+      <td>7735342025</td>
+      <td>7.735342e+09</td>
+      <td>...</td>
+      <td>This school has been rated Established for its...</td>
+      <td>2016.0</td>
+      <td>41.992541</td>
+      <td>-87.698360</td>
+      <td>6110 N FAIRFIELD AVE\nChicago, Illinois 60659\...</td>
+      <td>20</td>
+      <td>4450</td>
+      <td>50</td>
+      <td>31</td>
+      <td>24</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>CAMELOT - EXCEL SOUTHSHORE HS</td>
+      <td>Excel - Woodlawn HS</td>
+      <td>Citywide-Option</td>
+      <td>HS</td>
+      <td>7530 S SOUTH SHORE DR</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60649</td>
+      <td>7739027800</td>
+      <td>7.739028e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.759749</td>
+      <td>-87.556487</td>
+      <td>7530 S SOUTH SHORE DR\nChicago, Illinois 60649...</td>
+      <td>39</td>
+      <td>22538</td>
+      <td>24</td>
+      <td>421</td>
+      <td>37</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>WEBSTER</td>
+      <td>Daniel Webster Elementary School</td>
+      <td>Neighborhood</td>
+      <td>ES</td>
+      <td>4055 W ARTHINGTON ST</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60624</td>
+      <td>7735346925</td>
+      <td>7.735347e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.869916</td>
+      <td>-87.727524</td>
+      <td>4055 W ARTHINGTON ST\nChicago, Illinois 60624\...</td>
+      <td>27</td>
+      <td>21572</td>
+      <td>30</td>
+      <td>703</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>YCCS - TRUMAN</td>
+      <td>YCCS-Truman Middle College HS</td>
+      <td>Charter</td>
+      <td>HS</td>
+      <td>1145 W WILSON AVE</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60640</td>
+      <td>7739074840</td>
+      <td>7.739075e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.965295</td>
+      <td>-87.659239</td>
+      <td>1145 W WILSON AVE\nChicago, Illinois 60640\n(4...</td>
+      <td>31</td>
+      <td>22616</td>
+      <td>15</td>
+      <td>241</td>
+      <td>39</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>CORKERY</td>
+      <td>Daniel J Corkery Elementary School</td>
+      <td>Neighborhood</td>
+      <td>ES</td>
+      <td>2510 S KILDARE AVE</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60623</td>
+      <td>7735341650</td>
+      <td>7.735342e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.845602</td>
+      <td>-87.731193</td>
+      <td>2510 S KILDARE AVE\nChicago, Illinois 60623\n(...</td>
+      <td>32</td>
+      <td>21569</td>
+      <td>57</td>
+      <td>205</td>
+      <td>28</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>STEINMETZ HS</td>
+      <td>Charles P Steinmetz College Preparatory HS</td>
+      <td>Neighborhood</td>
+      <td>HS</td>
+      <td>3030 N MOBILE AVE</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60634</td>
+      <td>7735343030</td>
+      <td>7.735343e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.935634</td>
+      <td>-87.783515</td>
+      <td>3030 N MOBILE AVE\nChicago, Illinois 60634\n(4...</td>
+      <td>19</td>
+      <td>22254</td>
+      <td>52</td>
+      <td>81</td>
+      <td>44</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>BELDING</td>
+      <td>Hiram H Belding Elementary School</td>
+      <td>Neighborhood</td>
+      <td>ES</td>
+      <td>4257 N TRIPP AVE</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60641</td>
+      <td>7735343590</td>
+      <td>7.735344e+09</td>
+      <td>...</td>
+      <td>This school has been rated Exemplary for its s...</td>
+      <td>2016.0</td>
+      <td>41.958938</td>
+      <td>-87.734020</td>
+      <td>4257 N TRIPP AVE\nChicago, Illinois 60641\n(41...</td>
+      <td>16</td>
+      <td>22618</td>
+      <td>21</td>
+      <td>269</td>
+      <td>38</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>MAGIC JOHNSON - BRAINERD HS</td>
+      <td>Magic Johnson- Brainerd HS</td>
+      <td>Citywide-Option</td>
+      <td>HS</td>
+      <td>8908 S ASHLAND AVE</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60620</td>
+      <td>7732392037</td>
+      <td>7.732392e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.731492</td>
+      <td>-87.663140</td>
+      <td>8908 S ASHLAND AVE\nChicago, Illinois 60620\n(...</td>
+      <td>72</td>
+      <td>21554</td>
+      <td>59</td>
+      <td>632</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>STEVENSON</td>
+      <td>Adlai E Stevenson Elementary School</td>
+      <td>Neighborhood</td>
+      <td>ES</td>
+      <td>8010 S KOSTNER AVE</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60652</td>
+      <td>7735352280</td>
+      <td>7.735352e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.747107</td>
+      <td>-87.731666</td>
+      <td>8010 S KOSTNER AVE\nChicago, Illinois 60652\n(...</td>
+      <td>69</td>
+      <td>4300</td>
+      <td>8</td>
+      <td>235</td>
+      <td>30</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>MARINE LEADERSHIP AT AMES HS</td>
+      <td>Marine Leadership Academy at Ames</td>
+      <td>Military academy</td>
+      <td>HS</td>
+      <td>1920 N HAMLIN AVE</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60647</td>
+      <td>7735344970</td>
+      <td>7.735345e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.916045</td>
+      <td>-87.721742</td>
+      <td>1920 N HAMLIN AVE\nChicago, Illinois 60647\n(4...</td>
+      <td>23</td>
+      <td>22535</td>
+      <td>1</td>
+      <td>388</td>
+      <td>49</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>631</th>
+      <td>ACERO - SOTO HS</td>
+      <td>Acero Charter Schools - Victoria Soto</td>
+      <td>Charter</td>
+      <td>HS</td>
+      <td>5025 S ST. LOUIS AVE</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60632</td>
+      <td>3124555446</td>
+      <td>3.124555e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.801762</td>
+      <td>-87.711025</td>
+      <td>5025 S ST. LOUIS AVE\nChicago, Illinois 60632\...</td>
+      <td>61</td>
+      <td>22248</td>
+      <td>56</td>
+      <td>776</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>632</th>
+      <td>ACERO - SANTIAGO</td>
+      <td>Acero Charter Schools - Esmeralda Santiago</td>
+      <td>Charter</td>
+      <td>ES</td>
+      <td>2510 W CORTEZ ST</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60622</td>
+      <td>3124555410</td>
+      <td>3.124555e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.900344</td>
+      <td>-87.689896</td>
+      <td>2510 W CORTEZ ST\nChicago, Illinois 60622\n(41...</td>
+      <td>25</td>
+      <td>21560</td>
+      <td>4</td>
+      <td>542</td>
+      <td>41</td>
+    </tr>
+    <tr>
+      <th>633</th>
+      <td>ACERO - TAMAYO</td>
+      <td>Acero Charter Schools - Rufino Tamayo</td>
+      <td>Charter</td>
+      <td>ES</td>
+      <td>5135 S CALIFORNIA AVE</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60632</td>
+      <td>7734346355</td>
+      <td>7.734345e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.799930</td>
+      <td>-87.693862</td>
+      <td>5135 S CALIFORNIA AVE\nChicago, Illinois 60632...</td>
+      <td>61</td>
+      <td>22248</td>
+      <td>56</td>
+      <td>778</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>634</th>
+      <td>GRAY</td>
+      <td>William P Gray Elementary School</td>
+      <td>Neighborhood</td>
+      <td>ES</td>
+      <td>3730 N LARAMIE AVE</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60641</td>
+      <td>7735343520</td>
+      <td>7.735344e+09</td>
+      <td>...</td>
+      <td>This school has been rated Established for its...</td>
+      <td>2016.0</td>
+      <td>41.948764</td>
+      <td>-87.757116</td>
+      <td>3730 N LARAMIE AVE\nChicago, Illinois 60641\n(...</td>
+      <td>15</td>
+      <td>22618</td>
+      <td>21</td>
+      <td>231</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <th>635</th>
+      <td>ACERO - GARCIA HS</td>
+      <td>Acero Charter Schools - Major Hector P. Garcia MD</td>
+      <td>Charter</td>
+      <td>HS</td>
+      <td>4248 W 47TH ST</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60632</td>
+      <td>7735793480</td>
+      <td>7.733766e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.809171</td>
+      <td>-87.730467</td>
+      <td>4248 W 47TH ST\nChicago, Illinois 60632\n(41.8...</td>
+      <td>54</td>
+      <td>22248</td>
+      <td>56</td>
+      <td>591</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>636</th>
+      <td>ACERO - CISNEROS</td>
+      <td>Acero Charter Schools - Sandra Cisneros</td>
+      <td>Charter</td>
+      <td>ES</td>
+      <td>2744 W PERSHING RD</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60632</td>
+      <td>7733768830</td>
+      <td>7.733769e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.822884</td>
+      <td>-87.693996</td>
+      <td>2744 W PERSHING RD\nChicago, Illinois 60632\n(...</td>
+      <td>55</td>
+      <td>22248</td>
+      <td>56</td>
+      <td>638</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>637</th>
+      <td>ACERO - DE LA CRUZ</td>
+      <td>Acero Charter Schools - Sor Juana Inés de la Cruz</td>
+      <td>Charter</td>
+      <td>ES</td>
+      <td>7416 N RIDGE AVE</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60645</td>
+      <td>3124555442</td>
+      <td>3.124555e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>42.016476</td>
+      <td>-87.684406</td>
+      <td>7416 N RIDGE AVE\nChicago, Illinois 60645\n(42...</td>
+      <td>20</td>
+      <td>22528</td>
+      <td>12</td>
+      <td>341</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>638</th>
+      <td>ACERO - TORRES</td>
+      <td>Acero Charter Schools - PFC Omar E. Torres</td>
+      <td>Charter</td>
+      <td>ES</td>
+      <td>4248 W 47TH ST</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60632</td>
+      <td>7735793475</td>
+      <td>7.733766e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.808200</td>
+      <td>-87.730450</td>
+      <td>4248 W 47TH ST\nChicago, Illinois 60632\n(41.8...</td>
+      <td>54</td>
+      <td>22248</td>
+      <td>56</td>
+      <td>591</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>639</th>
+      <td>ACERO - MARQUEZ</td>
+      <td>Acero Charter Schools - Officer Donald J. Marquez</td>
+      <td>Charter</td>
+      <td>ES</td>
+      <td>2916 W 47TH ST</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60632</td>
+      <td>7733212200</td>
+      <td>7.733212e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.808309</td>
+      <td>-87.697394</td>
+      <td>2916 W 47TH ST\nChicago, Illinois 60632\n(41.8...</td>
+      <td>55</td>
+      <td>22248</td>
+      <td>56</td>
+      <td>85</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>640</th>
+      <td>STOCK</td>
+      <td>Frederick Stock Elementary School</td>
+      <td>Neighborhood</td>
+      <td>ES</td>
+      <td>7507 W BIRCHWOOD AVE</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60631</td>
+      <td>7735341215</td>
+      <td>7.735341e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>42.016892</td>
+      <td>-87.814195</td>
+      <td>7507 W BIRCHWOOD AVE\nChicago, Illinois 60631\...</td>
+      <td>77</td>
+      <td>22243</td>
+      <td>17</td>
+      <td>653</td>
+      <td>29</td>
+    </tr>
+    <tr>
+      <th>641</th>
+      <td>YCCS - PROGRESSIVE LEADERSHIP</td>
+      <td>YCCS-Progressive Leadership Academy</td>
+      <td>Charter</td>
+      <td>HS</td>
+      <td>6620 S DR MARTIN LUTHER KING JR DR</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60637</td>
+      <td>7733633837</td>
+      <td>7.737239e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.773962</td>
+      <td>-87.615740</td>
+      <td>6620 S DR MARTIN LUTHER KING JR DR\nChicago, I...</td>
+      <td>67</td>
+      <td>22260</td>
+      <td>60</td>
+      <td>122</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>642</th>
+      <td>CHIARTS HS</td>
+      <td>Chicago High School for the Arts (ChiArts)</td>
+      <td>Contract</td>
+      <td>HS</td>
+      <td>2714 W AUGUSTA BLVD</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60622</td>
+      <td>7735349710</td>
+      <td>7.735350e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.899377</td>
+      <td>-87.694945</td>
+      <td>2714 W AUGUSTA BLVD\nChicago, Illinois 60622\n...</td>
+      <td>25</td>
+      <td>21560</td>
+      <td>4</td>
+      <td>543</td>
+      <td>49</td>
+    </tr>
+    <tr>
+      <th>643</th>
+      <td>INSTITUTO - LOZANO MASTERY HS</td>
+      <td>Instituto - Justice Lozano Mastery</td>
+      <td>Charter</td>
+      <td>HS</td>
+      <td>2570 S BLUE ISLAND AVE</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60608</td>
+      <td>7738900055</td>
+      <td>7.738902e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.845957</td>
+      <td>-87.685903</td>
+      <td>2570 S BLUE ISLAND AVE\nChicago, Illinois 6060...</td>
+      <td>33</td>
+      <td>14920</td>
+      <td>43</td>
+      <td>204</td>
+      <td>26</td>
+    </tr>
+    <tr>
+      <th>644</th>
+      <td>CAMELOT - EXCEL ENGLEWOOD HS</td>
+      <td>Excel - Englewood HS</td>
+      <td>Citywide-Option</td>
+      <td>HS</td>
+      <td>7141 S MORGAN</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60621</td>
+      <td>7736756654</td>
+      <td>7.736956e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.763896</td>
+      <td>-87.649124</td>
+      <td>7141 S MORGAN\nChicago, Illinois 60621\n(41.76...</td>
+      <td>66</td>
+      <td>21559</td>
+      <td>11</td>
+      <td>512</td>
+      <td>32</td>
+    </tr>
+    <tr>
+      <th>645</th>
+      <td>KIPP - BLOOM</td>
+      <td>KIPP Chicago Charter School - KIPP Bloom</td>
+      <td>Charter</td>
+      <td>ES</td>
+      <td>5515 S LOWE AVE</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60621</td>
+      <td>7739388565</td>
+      <td>7.737837e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.793556</td>
+      <td>-87.639967</td>
+      <td>5515 S LOWE AVE\nChicago, Illinois 60621\n(41....</td>
+      <td>66</td>
+      <td>21559</td>
+      <td>11</td>
+      <td>166</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>646</th>
+      <td>KIPP - ACADEMY</td>
+      <td>KIPP Chicago Charter School - KIPP Create</td>
+      <td>Charter</td>
+      <td>ES</td>
+      <td>4818 W OHIO ST</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60644</td>
+      <td>7739388553</td>
+      <td>7.732875e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.891816</td>
+      <td>-87.746614</td>
+      <td>4818 W OHIO ST\nChicago, Illinois 60644\n(41.8...</td>
+      <td>26</td>
+      <td>22216</td>
+      <td>32</td>
+      <td>695</td>
+      <td>45</td>
+    </tr>
+    <tr>
+      <th>647</th>
+      <td>U OF C - DONOGHUE</td>
+      <td>University of Chicago - Donoghue</td>
+      <td>Charter</td>
+      <td>ES</td>
+      <td>707 E 37TH ST</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60653</td>
+      <td>7732855301</td>
+      <td>7.732852e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.827726</td>
+      <td>-87.608501</td>
+      <td>707 E 37TH ST\nChicago, Illinois 60653\n(41.82...</td>
+      <td>2</td>
+      <td>4301</td>
+      <td>36</td>
+      <td>221</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>648</th>
+      <td>CAMELOT - SAFE ES</td>
+      <td>Camelot Safe Elementary</td>
+      <td>Citywide-Option</td>
+      <td>ES</td>
+      <td>7877 S COLES AVE</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60649</td>
+      <td>7739022487</td>
+      <td>7.739028e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.753117</td>
+      <td>-87.550513</td>
+      <td>7877 S COLES AVE\nChicago, Illinois 60649\n(41...</td>
+      <td>39</td>
+      <td>22538</td>
+      <td>24</td>
+      <td>421</td>
+      <td>37</td>
+    </tr>
+    <tr>
+      <th>649</th>
+      <td>CAMELOT - EXCEL HS</td>
+      <td>Chicago Excel Academy</td>
+      <td>Citywide-Option</td>
+      <td>HS</td>
+      <td>1257 W 111TH ST</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60643</td>
+      <td>7736298379</td>
+      <td>7.736299e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.691953</td>
+      <td>-87.654248</td>
+      <td>1257 W 111TH ST\nChicago, Illinois 60643\n(41....</td>
+      <td>74</td>
+      <td>22212</td>
+      <td>13</td>
+      <td>663</td>
+      <td>22</td>
+    </tr>
+    <tr>
+      <th>650</th>
+      <td>LITTLE BLACK PEARL HS</td>
+      <td>Little Black Pearl Art and Design Academy</td>
+      <td>Charter</td>
+      <td>HS</td>
+      <td>1060 E 47TH ST</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60653</td>
+      <td>7736905500</td>
+      <td>7.732852e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.809695</td>
+      <td>-87.599340</td>
+      <td>1060 E 47TH ST\nChicago, Illinois 60653\n(41.8...</td>
+      <td>5</td>
+      <td>4301</td>
+      <td>36</td>
+      <td>395</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>651</th>
+      <td>CAMELOT - SAFE HS</td>
+      <td>Camelot Safe HS</td>
+      <td>Citywide-Option</td>
+      <td>HS</td>
+      <td>7530 S SOUTH SHORE DR</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60649</td>
+      <td>7739022487</td>
+      <td>7.739028e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.753115</td>
+      <td>-87.551804</td>
+      <td>7530 S SOUTH SHORE DR\nChicago, Illinois 60649...</td>
+      <td>39</td>
+      <td>22538</td>
+      <td>24</td>
+      <td>421</td>
+      <td>37</td>
+    </tr>
+    <tr>
+      <th>652</th>
+      <td>KIPP - ONE</td>
+      <td>KIPP One Academy</td>
+      <td>Charter</td>
+      <td>ES</td>
+      <td>730 N PULASKI</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60624</td>
+      <td>7739388578</td>
+      <td>3.127338e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.893805</td>
+      <td>-87.726615</td>
+      <td>730 N PULASKI\nChicago, Illinois 60624\n(41.89...</td>
+      <td>24</td>
+      <td>21572</td>
+      <td>30</td>
+      <td>99</td>
+      <td>45</td>
+    </tr>
+    <tr>
+      <th>653</th>
+      <td>NOBLE - ACADEMY HS</td>
+      <td>Noble - The Noble Academy</td>
+      <td>Charter</td>
+      <td>HS</td>
+      <td>1443 N OGDEN AVE</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60610</td>
+      <td>3125741527</td>
+      <td>7.085754e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.906879</td>
+      <td>-87.645577</td>
+      <td>1443 N OGDEN AVE\nChicago, Illinois 60610\n(41...</td>
+      <td>37</td>
+      <td>14926</td>
+      <td>54</td>
+      <td>108</td>
+      <td>46</td>
+    </tr>
+    <tr>
+      <th>654</th>
+      <td>IRVING</td>
+      <td>Washington Irving Elementary School</td>
+      <td>Neighborhood</td>
+      <td>ES</td>
+      <td>749 S OAKLEY BLVD</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60612</td>
+      <td>7735347295</td>
+      <td>7.735347e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.871595</td>
+      <td>-87.683616</td>
+      <td>749 S OAKLEY BLVD\nChicago, Illinois 60612\n(4...</td>
+      <td>29</td>
+      <td>21184</td>
+      <td>28</td>
+      <td>5</td>
+      <td>23</td>
+    </tr>
+    <tr>
+      <th>655</th>
+      <td>CATALYST - CIRCLE ROCK</td>
+      <td>Catalyst Elementary Charter School - Circle Rock</td>
+      <td>Charter</td>
+      <td>ES</td>
+      <td>5608 W WASHINGTON BLVD</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60644</td>
+      <td>7739455025</td>
+      <td>3.126262e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.882322</td>
+      <td>-87.765322</td>
+      <td>5608 W WASHINGTON BLVD\nChicago, Illinois 6064...</td>
+      <td>26</td>
+      <td>22216</td>
+      <td>32</td>
+      <td>618</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>656</th>
+      <td>LEARN - EXCEL</td>
+      <td>L.E.A.R.N. - Excel Campus</td>
+      <td>Charter</td>
+      <td>ES</td>
+      <td>3021 W CARROLL AVE</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60612</td>
+      <td>3122437001</td>
+      <td>7.738267e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.874687</td>
+      <td>-87.686568</td>
+      <td>3021 W CARROLL AVE\nChicago, Illinois 60612\n(...</td>
+      <td>29</td>
+      <td>21184</td>
+      <td>28</td>
+      <td>756</td>
+      <td>23</td>
+    </tr>
+    <tr>
+      <th>657</th>
+      <td>BURNHAM</td>
+      <td>Burnham Elementary Inclusive Academy</td>
+      <td>Neighborhood</td>
+      <td>ES</td>
+      <td>9928 S CRANDON AVE</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60617</td>
+      <td>7735356530</td>
+      <td>7.735357e+09</td>
+      <td>...</td>
+      <td>This school has been rated Established for its...</td>
+      <td>2016.0</td>
+      <td>41.714402</td>
+      <td>-87.567131</td>
+      <td>9928 S CRANDON AVE\nChicago, Illinois 60617\n(...</td>
+      <td>48</td>
+      <td>21202</td>
+      <td>25</td>
+      <td>252</td>
+      <td>37</td>
+    </tr>
+    <tr>
+      <th>658</th>
+      <td>MARSHALL HS</td>
+      <td>John Marshall Metropolitan High School</td>
+      <td>Neighborhood</td>
+      <td>HS</td>
+      <td>3250 W ADAMS ST</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60624</td>
+      <td>7735346455</td>
+      <td>7.735346e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.878444</td>
+      <td>-87.708050</td>
+      <td>3250 W ADAMS ST\nChicago, Illinois 60624\n(41....</td>
+      <td>28</td>
+      <td>21572</td>
+      <td>30</td>
+      <td>765</td>
+      <td>23</td>
+    </tr>
+    <tr>
+      <th>659</th>
+      <td>LELAND</td>
+      <td>George Leland Elementary School</td>
+      <td>Neighborhood</td>
+      <td>ES</td>
+      <td>512 S LAVERGNE AVE</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60644</td>
+      <td>7735346340</td>
+      <td>7.735346e+09</td>
+      <td>...</td>
+      <td>This school is in the process of being reviewe...</td>
+      <td>2016.0</td>
+      <td>41.873587</td>
+      <td>-87.749276</td>
+      <td>512 S LAVERGNE AVE\nChicago, Illinois 60644\n(...</td>
+      <td>26</td>
+      <td>22216</td>
+      <td>32</td>
+      <td>184</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>660</th>
+      <td>RICHARDSON</td>
+      <td>Robert J. Richardson Middle School</td>
+      <td>Neighborhood</td>
+      <td>MS</td>
+      <td>6018 S KARLOV</td>
+      <td>Chicago</td>
+      <td>Illinois</td>
+      <td>60629</td>
+      <td>7735358640</td>
+      <td>7.735358e+09</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>41.783826</td>
+      <td>-87.725422</td>
+      <td>6018 S KARLOV\nChicago, Illinois 60629\n(41.78...</td>
+      <td>63</td>
+      <td>21867</td>
+      <td>58</td>
+      <td>292</td>
+      <td>6</td>
+    </tr>
+  </tbody>
+</table>
+<p>661 rows × 165 columns</p>
+</div></div></div>
+</div>
+<p><a id="116"></a> <br></p>
+</section>
+<section id="e-graficos">
+<h3>E - Gráficos<a class="headerlink" href="#e-graficos" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">School_Type</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">sy1617</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s1">&#39;School_Survey_Student_Response_Rate_Pct&#39;</span><span class="p">,</span> 
+                             <span class="n">index</span><span class="o">=</span><span class="s1">&#39;School_Type&#39;</span><span class="p">,</span> <span class="n">aggfunc</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">)</span>
+<span class="n">School_Type</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>School_Survey_Student_Response_Rate_Pct</th>
+    </tr>
+    <tr>
+      <th>School_Type</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Career academy</th>
+      <td>65.375000</td>
+    </tr>
+    <tr>
+      <th>Charter</th>
+      <td>68.486066</td>
+    </tr>
+    <tr>
+      <th>Citywide-Option</th>
+      <td>62.128571</td>
+    </tr>
+    <tr>
+      <th>Classical</th>
+      <td>98.320000</td>
+    </tr>
+    <tr>
+      <th>Contract</th>
+      <td>65.075000</td>
+    </tr>
+    <tr>
+      <th>Magnet</th>
+      <td>88.009302</td>
+    </tr>
+    <tr>
+      <th>Military academy</th>
+      <td>87.883333</td>
+    </tr>
+    <tr>
+      <th>Neighborhood</th>
+      <td>84.235013</td>
+    </tr>
+    <tr>
+      <th>Regional gifted center</th>
+      <td>93.380000</td>
+    </tr>
+    <tr>
+      <th>Selective enrollment</th>
+      <td>82.190909</td>
+    </tr>
+    <tr>
+      <th>Small</th>
+      <td>82.138462</td>
+    </tr>
+    <tr>
+      <th>Special Education</th>
+      <td>29.062500</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">School_Type</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f80687eef28&gt;
+</pre></div>
+</div>
+<img alt="_images/638f142da4704bfc754c8ed329342ea1dcf38589d873fe9b02bd8e7a6a374d0f.png" src="_images/638f142da4704bfc754c8ed329342ea1dcf38589d873fe9b02bd8e7a6a374d0f.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">School_Type</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;barh&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f8064b70d30&gt;
+</pre></div>
+</div>
+<img alt="_images/4f40ccc724216588b6110de62a18e29afff18158c59e64595cdf44f9db917c79.png" src="_images/4f40ccc724216588b6110de62a18e29afff18158c59e64595cdf44f9db917c79.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">School_Type</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f806848b080&gt;
+</pre></div>
+</div>
+<img alt="_images/4c6a086ba4232bd132ba6ebea7a28260095349b5282bf9e99b2cb94f83198c8e.png" src="_images/4c6a086ba4232bd132ba6ebea7a28260095349b5282bf9e99b2cb94f83198c8e.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">School_Type</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;School_Survey_Student_Response_Rate_Pct&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f8064b780b8&gt;
+</pre></div>
+</div>
+<img alt="_images/f4f5189c9b7664a9641aaa443b7c1accc3f0a5fbc15b9e36e1fd633bceb02331.png" src="_images/f4f5189c9b7664a9641aaa443b7c1accc3f0a5fbc15b9e36e1fd633bceb02331.png" />
+</div>
+</div>
+<p><img alt="alt text" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Boxplot_vs_PDF.svg/550px-Boxplot_vs_PDF.svg.png" /></p>
+<p><a href="https://en.wikipedia.org/wiki/Box_plot">Box plot - wikipedia </a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sy1617</span><span class="p">[[</span><span class="s1">&#39;School_Type&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;School_Survey_Student_Response_Rate_Pct&#39;</span><span class="p">]</span>
+      <span class="p">]</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;School_Type&#39;</span><span class="p">]</span> <span class="p">,</span> 
+                <span class="n">rot</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f8068424eb8&gt;
+</pre></div>
+</div>
+<img alt="_images/ecc3b36f5afc4a48da939afc6c55d6102c883077590f909f06c060fe9d762b45.png" src="_images/ecc3b36f5afc4a48da939afc6c55d6102c883077590f909f06c060fe9d762b45.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sy1617</span><span class="p">[[</span><span class="s1">&#39;School_Type&#39;</span><span class="p">,</span> <span class="s1">&#39;School_Survey_Student_Response_Rate_Pct&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>School_Type</th>
+      <th>School_Survey_Student_Response_Rate_Pct</th>
+    </tr>
+    <tr>
+      <th>School_ID</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>609874</th>
+      <td>Neighborhood</td>
+      <td>90.7</td>
+    </tr>
+    <tr>
+      <th>610390</th>
+      <td>Military academy</td>
+      <td>97.4</td>
+    </tr>
+    <tr>
+      <th>610070</th>
+      <td>Neighborhood</td>
+      <td>87.3</td>
+    </tr>
+    <tr>
+      <th>400117</th>
+      <td>Charter</td>
+      <td>57.9</td>
+    </tr>
+    <tr>
+      <th>610251</th>
+      <td>Neighborhood</td>
+      <td>80.6</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<section id="voltar-ao-topo">
+<h4><a class="reference internal" href="#top"><span class="xref myst">Voltar ao topo</span></a><a class="headerlink" href="#voltar-ao-topo" title="Link to this heading">#</a></h4>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="8-Cluster_Analysis.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">8  Análise de Agrupamento</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#antes-de-comecar"><span style="color:red">Antes de começar</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variaveis">1 - Variáveis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cadeias-de-caractere">2 - Cadeias de caractere</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conversao-de-tipos">3 - Conversão de tipos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estruturas-de-dados-listas">4 - Estruturas de dados: listas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estruturas-de-dados-dicionarios">5 - Estruturas de dados: dicionários</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#declaracoes-condicionais">6 - Declarações Condicionais</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estruturas-de-repeticao">7 - Estruturas de repetição</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funcoes">8 - Funções</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entrada-e-saida-de-arquivos-i-o">9 - Entrada e saída de arquivos (I/O)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#folhas-de-dicas-da-linguagem">10 - Folhas de dicas da linguagem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#biblioteca-pandas">11 - Biblioteca Pandas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-instalando-e-importando-bibliotecas">A - Instalando e importando bibliotecas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-importando-e-inspecionando-dados">B - Importando e inspecionando dados</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-subselecao-de-dados">C - Subseleção de dados</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-processando-os-dados">D - Processando os dados</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e-entrada-e-saida-de-dados">E - Entrada e saída de dados</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e-graficos">E - Gráficos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#voltar-ao-topo"><span class="xref myst">Voltar ao topo</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ricardo R. da Silva
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

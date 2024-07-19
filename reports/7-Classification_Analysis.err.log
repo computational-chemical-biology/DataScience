@@ -1,0 +1,51 @@
+Traceback (most recent call last):
+  File "/home/rsilva/miniconda3/envs/datascience/lib/python3.12/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/home/rsilva/miniconda3/envs/datascience/lib/python3.12/site-packages/nbclient/client.py", line 1314, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rsilva/miniconda3/envs/datascience/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rsilva/miniconda3/envs/datascience/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/rsilva/miniconda3/envs/datascience/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/rsilva/miniconda3/envs/datascience/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/rsilva/miniconda3/envs/datascience/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Criar gráfico ilustrando o modelo de
+# regressão logística
+fig, (ax1, ax2) = plt.subplots(1,2, figsize=(16,8))
+
+# Como uma regressão linear se comportaria
+sns.regplot(dividas.balanco, dividas.debito2, order=1, ci=None,
+            scatter_kws={'color':'orange'},
+            line_kws={'color':'lightblue', 'lw':6}, ax=ax1)
+
+# Como a regressão logística se comporta
+ax2.scatter(X_treinamento, y, color='orange')
+ax2.plot(X_teste, prob[:,1], color='lightblue', lw=6)
+# Note a forma de mudar os rótulos do gráfico
+ax2.set_ylabel('Probabilidade de débito')
+ax2.set_xlabel('Balanço')
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mTypeError[0m                                 Traceback (most recent call last)
+Cell [0;32mIn[6], line 6[0m
+[1;32m      3[0m fig, (ax1, ax2) [38;5;241m=[39m plt[38;5;241m.[39msubplots([38;5;241m1[39m,[38;5;241m2[39m, figsize[38;5;241m=[39m([38;5;241m16[39m,[38;5;241m8[39m))
+[1;32m      5[0m [38;5;66;03m# Como uma regressão linear se comportaria[39;00m
+[0;32m----> 6[0m [43msns[49m[38;5;241;43m.[39;49m[43mregplot[49m[43m([49m[43mdividas[49m[38;5;241;43m.[39;49m[43mbalanco[49m[43m,[49m[43m [49m[43mdividas[49m[38;5;241;43m.[39;49m[43mdebito2[49m[43m,[49m[43m [49m[43morder[49m[38;5;241;43m=[39;49m[38;5;241;43m1[39;49m[43m,[49m[43m [49m[43mci[49m[38;5;241;43m=[39;49m[38;5;28;43;01mNone[39;49;00m[43m,[49m
+[1;32m      7[0m [43m            [49m[43mscatter_kws[49m[38;5;241;43m=[39;49m[43m{[49m[38;5;124;43m'[39;49m[38;5;124;43mcolor[39;49m[38;5;124;43m'[39;49m[43m:[49m[38;5;124;43m'[39;49m[38;5;124;43morange[39;49m[38;5;124;43m'[39;49m[43m}[49m[43m,[49m
+[1;32m      8[0m [43m            [49m[43mline_kws[49m[38;5;241;43m=[39;49m[43m{[49m[38;5;124;43m'[39;49m[38;5;124;43mcolor[39;49m[38;5;124;43m'[39;49m[43m:[49m[38;5;124;43m'[39;49m[38;5;124;43mlightblue[39;49m[38;5;124;43m'[39;49m[43m,[49m[43m [49m[38;5;124;43m'[39;49m[38;5;124;43mlw[39;49m[38;5;124;43m'[39;49m[43m:[49m[38;5;241;43m6[39;49m[43m}[49m[43m,[49m[43m [49m[43max[49m[38;5;241;43m=[39;49m[43max1[49m[43m)[49m
+[1;32m     10[0m [38;5;66;03m# Como a regressão logística se comporta[39;00m
+[1;32m     11[0m ax2[38;5;241m.[39mscatter(X_treinamento, y, color[38;5;241m=[39m[38;5;124m'[39m[38;5;124morange[39m[38;5;124m'[39m)
+
+[0;31mTypeError[0m: regplot() takes from 0 to 1 positional arguments but 2 positional arguments (and 5 keyword-only arguments) were given
+
