@@ -38,7 +38,7 @@ python edit_notebooks.py YOUR_NOTEBOOK
 Build
 
 ```
-jupyter-book build bioestatistica/
+jupyter-book build DataScience/
 ```
 
 You can preview the result on `_build/html/index.html`.

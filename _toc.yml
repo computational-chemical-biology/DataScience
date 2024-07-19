@@ -2,12 +2,18 @@
 # Learn more at https://jupyterbook.org/customize/toc.html
 
 format: jb-book
-root: intro
+root: 0-Index.ipynb
 chapters:
-- file: capitulos/chap5/chap5
-- file: capitulos/chap6/chap6
-- file: capitulos/chap7/chap7
-- file: capitulos/chap8/chap8
-- file: capitulos/chap9/chap9
-- file: capitulos/chap10/chap10
-- file: capitulos/chap11/chap11
+- file: 1-Introduction_to_Jupyter_Platform.ipynb
+- file: 2.1-Data_Structures.ipynb
+- file: 2.2-Logical_Operations.ipynb
+- file: 2.3-Control_Structures.ipynb
+- file: 2.4-Functions.ipynb
+- file: 2-Introduction_to_python_programming_language.ipynb
+- file: 3-NumPy_Library.ipynb
+- file: 4-Pandas_Library.ipynb
+- file: 5-Scikit-Learn_Library.ipynb
+- file: 6-Regression_Analysis.ipynb
+- file: 7-Classification_Analysis.ipynb
+- file: 8-Cluster_Analysis.ipynb
+- file: short-tutorial.ipynb
