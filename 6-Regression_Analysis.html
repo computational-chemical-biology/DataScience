@@ -490,7 +490,7 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="introducao-a-regressao-linear">
 <h1>1 - Introdução à Regressão Linear<a class="headerlink" href="#introducao-a-regressao-linear" title="Link to this heading">#</a></h1>
-<p>Como visto anteriormente, a regressão linear é útil para predição de uma resposta quantitativa. Os conceitos introduzidos na análise de regressão podem ser generalizados para técnicas mais complexas, estudadas nas seções posteriores. A regressão linear tem por objetivo a predição de uma resposta quantitativa Y, com base em um conjunto de variáveis preditoras X <cite data-cite="236589/MJERACZD"></cite>. O modelo assume que existe uma resposta aproximadamente linear entre X e Y. Podemos expressar uma regressão linear da seguinte forma:</p>
+<p>Como visto anteriormente, a regressão linear é útil para predição de uma resposta quantitativa. Os conceitos introduzidos na análise de regressão podem ser generalizados para técnicas mais complexas, estudadas nas seções posteriores. A regressão linear tem por objetivo a predição de uma resposta quantitativa Y, com base em um conjunto de variáveis preditoras X <span id="id1">[<a class="reference internal" href="8-Cluster_Analysis.html#id6" title="Simon Rogers and Mark Girolami. A first course in machine learning. Chapman and Hall/CRC, 2016.">RG16</a>]</span>. O modelo assume que existe uma resposta aproximadamente linear entre X e Y. Podemos expressar uma regressão linear da seguinte forma:</p>
 <p><span class="math notranslate nohighlight">\(y = \beta_0 + \beta_1x\)</span></p>
 <p>onde <span class="math notranslate nohighlight">\(y\)</span> representa a variável resposta, que se prentende predizer, <span class="math notranslate nohighlight">\(x\)</span> as características (também conhecidas como variáveis preditoras ou dependentes), <span class="math notranslate nohighlight">\(\beta_0\)</span> é o intercepto da regressão e <span class="math notranslate nohighlight">\(\beta_1\)</span> é o coeficiente para <span class="math notranslate nohighlight">\(x\)</span>.</p>
 <p>A seguir veremos como estimar modelos de regressão. Utilizaremos as bibliotecas <a class="reference external" href="http://scikit-learn.org/stable/">scikit-learn</a> e <a class="reference external" href="http://statsmodels.sourceforge.net/">Statsmodels</a> assim como outras bibliotecas e conceitos de programação apresentados previamente.</p>
@@ -814,7 +814,7 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x708897816540&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x72327e1c8f50&gt;]
 </pre></div>
 </div>
 <img alt="_images/d03d0f4e8a6747c8f91e0659b8c290ba1476374fdf74e6ebd68ada27220b750f.png" src="_images/d03d0f4e8a6747c8f91e0659b8c290ba1476374fdf74e6ebd68ada27220b750f.png" />
@@ -862,7 +862,7 @@ dtype: float64
 <span class="c1"># soma de quadrados dos resíduos (residual sum of squares)</span>
 <span class="n">rss</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">((</span><span class="n">dados</span><span class="p">[</span><span class="s1">&#39;Sales&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">lm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">dados</span><span class="p">[</span><span class="s1">&#39;TV&#39;</span><span class="p">]))</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 <span class="c1"># soma de quadrados totais (total sum of squares)</span>
-<span class="n">tss</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">((</span><span class="n">dados</span><span class="p">[</span><span class="s1">&#39;Sales&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">dados</span><span class="p">[</span><span class="s1">&#39;Sales&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>       
+<span class="n">tss</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">((</span><span class="n">dados</span><span class="p">[</span><span class="s1">&#39;Sales&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">dados</span><span class="p">[</span><span class="s1">&#39;Sales&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 <span class="c1"># R2</span>
 <span class="mi">1</span><span class="o">-</span><span class="n">rss</span><span class="o">/</span><span class="n">tss</span>
 </pre></div>
@@ -938,10 +938,10 @@ dtype: float64
   <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   570.3</td>
 </tr>
 <tr>
-  <th>Date:</th>             <td>Fri, 19 Jul 2024</td> <th>  Prob (F-statistic):</th> <td>1.58e-96</td>
+  <th>Date:</th>             <td>Thu, 15 Aug 2024</td> <th>  Prob (F-statistic):</th> <td>1.58e-96</td>
 </tr>
 <tr>
-  <th>Time:</th>                 <td>13:35:51</td>     <th>  Log-Likelihood:    </th> <td> -386.18</td>
+  <th>Time:</th>                 <td>17:00:45</td>     <th>  Log-Likelihood:    </th> <td> -386.18</td>
 </tr>
 <tr>
   <th>No. Observations:</th>      <td>   200</td>      <th>  AIC:               </th> <td>   780.4</td>
@@ -1469,7 +1469,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># lembre-se que nosso modelo possui</span>
-<span class="c1"># 3 características, logo, para predição, </span>
+<span class="c1"># 3 características, logo, para predição,</span>
 <span class="c1"># necessitamos de novos valores para as 3 características</span>
 <span class="n">lm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="mi">100</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">25</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
 </pre></div>
@@ -1911,7 +1911,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
     <span class="n">XX</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X1</span><span class="o">.</span><span class="n">transpose</span><span class="p">(),</span><span class="n">X1</span><span class="p">))</span>
     <span class="c1"># A multiplicação X&#39;y:</span>
     <span class="n">Xy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X1</span><span class="o">.</span><span class="n">transpose</span><span class="p">(),</span><span class="n">Y</span><span class="p">)</span>
-    <span class="n">betas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">XX</span><span class="p">,</span><span class="n">Xy</span><span class="p">)</span>  
+    <span class="n">betas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">XX</span><span class="p">,</span><span class="n">Xy</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">betas</span>
 </pre></div>
 </div>
@@ -1950,7 +1950,35 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="referencias">
 <h1>8 - Referências<a class="headerlink" href="#referencias" title="Link to this heading">#</a></h1>
-<div class="cite2c-biblio"></div><section id="voltar-ao-topo">
+<div class="docutils container" id="id2">
+<div role="list" class="citation-list">
+<div class="citation" id="id9" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>ELLS11<span class="fn-bracket">]</span></span>
+<p>Brian S. Everitt, Sabine Landau, Morven Leese, and Daniel Stahl. Cluster analysis: Fifth edition. <em>Cluster Analysis: Fifth Edition</em>, pages 1–330, jan 2011.</p>
+</div>
+<div class="citation" id="id4" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>JWH+23<span class="fn-bracket">]</span></span>
+<p>Gareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani, and Jonathan Taylor. <em>An introduction to statistical learning: With applications in python</em>. Springer Nature, 2023.</p>
+</div>
+<div class="citation" id="id3" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Mat23<span class="fn-bracket">]</span></span>
+<p>Eric Matthes. <em>Python crash course: A hands-on, project-based introduction to programming</em>. no starch press, 2023.</p>
+</div>
+<div class="citation" id="id5" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">RG16</a><span class="fn-bracket">]</span></span>
+<p>Simon Rogers and Mark Girolami. <em>A first course in machine learning</em>. Chapman and Hall/CRC, 2016.</p>
+</div>
+<div class="citation" id="id6" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Van16<span class="fn-bracket">]</span></span>
+<p>Jake VanderPlas. <em>Python data science handbook: Essential tools for working with data</em>. &quot; O'Reilly Media, Inc.&quot;, 2016.</p>
+</div>
+<div class="citation" id="id7" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>VF16<span class="fn-bracket">]</span></span>
+<p>Kurt Varmuza and Peter Filzmoser. <em>Introduction to multivariate statistical analysis in chemometrics</em>. CRC press, 2016.</p>
+</div>
+</div>
+</div>
+<section id="voltar-ao-topo">
 <h2><a class="reference internal" href="#top"><span class="xref myst">Voltar ao topo</span></a><a class="headerlink" href="#voltar-ao-topo" title="Link to this heading">#</a></h2>
 <!--NAVIGATION-->
 <p>&lt;  <a class="reference internal" href="5-Scikit-Learn_Library.html"><span class="std std-doc">Scikit-Learn Library</span></a> | <a class="reference internal" href="0-Index.html"><span class="std std-doc">Contents</span></a> | <a class="reference internal" href="7-Classification_Analysis.html"><span class="std std-doc">Classification Analysis</span></a> &gt;</p>

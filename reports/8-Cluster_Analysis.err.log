@@ -19,7 +19,7 @@ Traceback (most recent call last):
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
 from sklearn.cluster import AgglomerativeClustering
-cluster = AgglomerativeClustering(n_clusters=3, affinity='euclidean', linkage='ward')  
+cluster = AgglomerativeClustering(n_clusters=3, affinity='euclidean', linkage='ward')
 cluster.fit_predict(x)
 ------------------
 
@@ -28,7 +28,7 @@ cluster.fit_predict(x)
 [0;31mTypeError[0m                                 Traceback (most recent call last)
 Cell [0;32mIn[16], line 2[0m
 [1;32m      1[0m [38;5;28;01mfrom[39;00m [38;5;21;01msklearn[39;00m[38;5;21;01m.[39;00m[38;5;21;01mcluster[39;00m [38;5;28;01mimport[39;00m AgglomerativeClustering
-[0;32m----> 2[0m cluster [38;5;241m=[39m [43mAgglomerativeClustering[49m[43m([49m[43mn_clusters[49m[38;5;241;43m=[39;49m[38;5;241;43m3[39;49m[43m,[49m[43m [49m[43maffinity[49m[38;5;241;43m=[39;49m[38;5;124;43m'[39;49m[38;5;124;43meuclidean[39;49m[38;5;124;43m'[39;49m[43m,[49m[43m [49m[43mlinkage[49m[38;5;241;43m=[39;49m[38;5;124;43m'[39;49m[38;5;124;43mward[39;49m[38;5;124;43m'[39;49m[43m)[49m  
+[0;32m----> 2[0m cluster [38;5;241m=[39m [43mAgglomerativeClustering[49m[43m([49m[43mn_clusters[49m[38;5;241;43m=[39;49m[38;5;241;43m3[39;49m[43m,[49m[43m [49m[43maffinity[49m[38;5;241;43m=[39;49m[38;5;124;43m'[39;49m[38;5;124;43meuclidean[39;49m[38;5;124;43m'[39;49m[43m,[49m[43m [49m[43mlinkage[49m[38;5;241;43m=[39;49m[38;5;124;43m'[39;49m[38;5;124;43mward[39;49m[38;5;124;43m'[39;49m[43m)[49m
 [1;32m      3[0m cluster[38;5;241m.[39mfit_predict(x)
 
 [0;31mTypeError[0m: AgglomerativeClustering.__init__() got an unexpected keyword argument 'affinity'

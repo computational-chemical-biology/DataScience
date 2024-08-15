@@ -491,7 +491,7 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="introducao-a-biblioteca-numpy">
 <h1>1 - Introdução à biblioteca NumPy<a class="headerlink" href="#introducao-a-biblioteca-numpy" title="Link to this heading">#</a></h1>
-<p>Nesta seção veremos como podemos usar a biblioteca Numpy para carregar, armazenar e manipular dados <cite data-cite="236589/TU28EEPW"></cite>.</p>
+<p>Nesta seção veremos como podemos usar a biblioteca Numpy para carregar, armazenar e manipular dados <span id="id1">[<a class="reference internal" href="8-Cluster_Analysis.html#id7" title="Jake VanderPlas. Python data science handbook: Essential tools for working with data. &quot; O'Reilly Media, Inc.&quot;, 2016.">Van16</a>]</span>.</p>
 <p>A ideia é generalizar a aplicação da manipulação de um vetor ou matriz de números para cálculos variados.</p>
 <p>A biblioteca NumPy (<em>Numerical Python</em>) oferece uma interface eficiente para armazenar e realizar operações em <a class="reference external" href="https://pt.wikipedia.org/wiki/Buffer_(ci%C3%AAncia_da_computa%C3%A7%C3%A3o)">Memória Principal</a> com conjuntos de dados extensos.</p>
 <p>As matrizes em NumPy são semelhantes às listas discutidas em seções anteriores, entretanto o armazenamento e processamento são mais eficientes quando é necessário processar matrizes mais extensas.</p>
@@ -707,7 +707,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># criar um array de dimensões 3x5 de tipo floating-point, preenchido com 1 </span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># criar um array de dimensões 3x5 de tipo floating-point, preenchido com 1</span>
 <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -772,9 +772,9 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.08874888, 0.45663523, 0.56414707],
-       [0.14500509, 0.90048715, 0.12386676],
-       [0.95896037, 0.59560683, 0.15673113]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.92737304, 0.5014188 , 0.89079694],
+       [0.41632832, 0.01324529, 0.14255987],
+       [0.28595212, 0.65207368, 0.03474399]])
 </pre></div>
 </div>
 </div>
@@ -788,9 +788,9 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.56806538, -0.30897098, -0.02648768],
-       [ 0.2350725 ,  0.12021856,  0.48638103],
-       [ 1.25677904,  0.50057917, -0.33428071]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.56216689, -0.80021657,  0.35378229],
+       [-0.5389684 ,  0.97145626,  1.60733867],
+       [-1.57823012,  0.81599299,  0.38944316]])
 </pre></div>
 </div>
 </div>
@@ -803,9 +803,9 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[3, 8, 5],
-       [4, 6, 4],
-       [6, 3, 6]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[4, 7, 4],
+       [6, 7, 2],
+       [1, 6, 1]])
 </pre></div>
 </div>
 </div>
@@ -1257,7 +1257,7 @@ nbytes: 480 bytes
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">valores</span><span class="p">)):</span>
         <span class="n">saida</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">valores</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="c1"># calcula a divisão para cada elemento do array</span>
     <span class="k">return</span> <span class="n">saida</span>
-        
+
 <span class="n">valores</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 <span class="n">calculo_individual</span><span class="p">(</span><span class="n">valores</span><span class="p">)</span>
 </pre></div>
@@ -1277,7 +1277,7 @@ nbytes: 480 bytes
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5.12 μs ± 108 ns per loop (mean ± std. dev. of 7 runs, 100,000 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5.08 μs ± 43.8 ns per loop (mean ± std. dev. of 7 runs, 100,000 loops each)
 </pre></div>
 </div>
 </div>
@@ -1290,7 +1290,7 @@ nbytes: 480 bytes
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>715 ns ± 88.1 ns per loop (mean ± std. dev. of 7 runs, 1,000,000 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>680 ns ± 3.11 ns per loop (mean ± std. dev. of 7 runs, 1,000,000 loops each)
 </pre></div>
 </div>
 </div>
@@ -1400,7 +1400,35 @@ x % 2  =  [0 1 0 1]
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="referencias">
 <h1>4 - Referências<a class="headerlink" href="#referencias" title="Link to this heading">#</a></h1>
-<div class="cite2c-biblio"></div><section id="voltar-ao-topo">
+<div class="docutils container" id="id2">
+<div role="list" class="citation-list">
+<div class="citation" id="id9" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>ELLS11<span class="fn-bracket">]</span></span>
+<p>Brian S. Everitt, Sabine Landau, Morven Leese, and Daniel Stahl. Cluster analysis: Fifth edition. <em>Cluster Analysis: Fifth Edition</em>, pages 1–330, jan 2011.</p>
+</div>
+<div class="citation" id="id4" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>JWH+23<span class="fn-bracket">]</span></span>
+<p>Gareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani, and Jonathan Taylor. <em>An introduction to statistical learning: With applications in python</em>. Springer Nature, 2023.</p>
+</div>
+<div class="citation" id="id3" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Mat23<span class="fn-bracket">]</span></span>
+<p>Eric Matthes. <em>Python crash course: A hands-on, project-based introduction to programming</em>. no starch press, 2023.</p>
+</div>
+<div class="citation" id="id5" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>RG16<span class="fn-bracket">]</span></span>
+<p>Simon Rogers and Mark Girolami. <em>A first course in machine learning</em>. Chapman and Hall/CRC, 2016.</p>
+</div>
+<div class="citation" id="id6" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">Van16</a><span class="fn-bracket">]</span></span>
+<p>Jake VanderPlas. <em>Python data science handbook: Essential tools for working with data</em>. &quot; O'Reilly Media, Inc.&quot;, 2016.</p>
+</div>
+<div class="citation" id="id7" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>VF16<span class="fn-bracket">]</span></span>
+<p>Kurt Varmuza and Peter Filzmoser. <em>Introduction to multivariate statistical analysis in chemometrics</em>. CRC press, 2016.</p>
+</div>
+</div>
+</div>
+<section id="voltar-ao-topo">
 <h2><a class="reference internal" href="#top"><span class="xref myst">Voltar ao topo</span></a><a class="headerlink" href="#voltar-ao-topo" title="Link to this heading">#</a></h2>
 <!--NAVIGATION-->
 <p>&lt; <a class="reference internal" href="2.4-Functions.html"><span class="std std-doc">Functions</span></a> | <a class="reference internal" href="0-Index.html"><span class="std std-doc">Contents</span></a> | <a class="reference internal" href="4-Pandas_Library.html"><span class="std std-doc">Pandas Library</span></a>  &gt;</p>

@@ -738,12 +738,12 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;arquivo_1.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="c1"># a função open cria um manipulador de arquivos (handler),</span>
-                               <span class="c1"># que é atribuído para a variável f, </span>
+                               <span class="c1"># que é atribuído para a variável f,</span>
                                <span class="c1"># enquanto &quot;w&quot; é o parâmetro que indica o modo (w para write)</span>
 <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
     <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">item</span><span class="p">))</span> <span class="c1"># escreve o número para o arquivo</span>
     <span class="c1"># adicione uma caractere que faz com que o arquivo mude de linha</span>
-    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span> 
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="c1"># alternativamente podemos fazer:</span>
     <span class="c1"># f.write(str(item)+&quot;\n&quot;) # como vimos anteriormente `+` concatena caracteres</span>
 <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span> <span class="c1"># fecha o manipulador de arquivos por motivos de segurança</span>
@@ -776,7 +776,7 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;arquivo_2.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span> <span class="c1"># a função with se encarrega de abrir e fechar o manipulador de arquivos</span>
     <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
         <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">item</span><span class="p">))</span>
-        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span> 
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -877,7 +877,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;arquivo_2.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">conteudo</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">f</span><span class="p">]</span> 
+    <span class="n">conteudo</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">f</span><span class="p">]</span>
     <span class="n">conteudo</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">conteudo</span><span class="p">]</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Antes de converte para `int`&#39;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">conteudo</span><span class="p">)</span>
@@ -1291,7 +1291,34 @@ SpearmanrResult(correlation=1.0, pvalue=0.0)
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="referencias">
 <h1>5 - Referências<a class="headerlink" href="#referencias" title="Link to this heading">#</a></h1>
-<div class="cite2c-biblio"></div>
+<div class="docutils container" id="id2">
+<div role="list" class="citation-list">
+<div class="citation" id="id9" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>ELLS11<span class="fn-bracket">]</span></span>
+<p>Brian S. Everitt, Sabine Landau, Morven Leese, and Daniel Stahl. Cluster analysis: Fifth edition. <em>Cluster Analysis: Fifth Edition</em>, pages 1–330, jan 2011.</p>
+</div>
+<div class="citation" id="id4" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>JWH+23<span class="fn-bracket">]</span></span>
+<p>Gareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani, and Jonathan Taylor. <em>An introduction to statistical learning: With applications in python</em>. Springer Nature, 2023.</p>
+</div>
+<div class="citation" id="id3" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Mat23<span class="fn-bracket">]</span></span>
+<p>Eric Matthes. <em>Python crash course: A hands-on, project-based introduction to programming</em>. no starch press, 2023.</p>
+</div>
+<div class="citation" id="id5" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>RG16<span class="fn-bracket">]</span></span>
+<p>Simon Rogers and Mark Girolami. <em>A first course in machine learning</em>. Chapman and Hall/CRC, 2016.</p>
+</div>
+<div class="citation" id="id6" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Van16<span class="fn-bracket">]</span></span>
+<p>Jake VanderPlas. <em>Python data science handbook: Essential tools for working with data</em>. &quot; O'Reilly Media, Inc.&quot;, 2016.</p>
+</div>
+<div class="citation" id="id7" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>VF16<span class="fn-bracket">]</span></span>
+<p>Kurt Varmuza and Peter Filzmoser. <em>Introduction to multivariate statistical analysis in chemometrics</em>. CRC press, 2016.</p>
+</div>
+</div>
+</div>
 <section id="volte-ao-topo">
 <h2><a class="reference internal" href="#top"><span class="xref myst">Volte ao topo</span></a><a class="headerlink" href="#volte-ao-topo" title="Link to this heading">#</a></h2>
 <!--NAVIGATION-->

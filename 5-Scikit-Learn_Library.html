@@ -475,7 +475,7 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="introducao-a-biblioteca-scikit-learn">
 <h1>1 - Introdução à biblioteca Scikit-Learn<a class="headerlink" href="#introducao-a-biblioteca-scikit-learn" title="Link to this heading">#</a></h1>
-<p>A biblioteca <a class="reference external" href="http://scikit-learn.org">Scikit-Learn</a> fornece versões eficientes de um grande número de algoritmos comumente utilizados no aprendizado de máquinas. A ampla adoção da biblioteca se deve muito a simplicidade e eficiência da sua Interface de Programação de Aplicação (do inglês API - <em>Application Programming Interface</em>), ou seja, o conjunto de rotinas e padrões estabelecidos pela biblioteca para acessar suas funcionalidades. Os padrões uniformes permitem que o aprendizado de diferentes modelos seja facilitado. Esta seção irá introduzir algumas funcionalidades da biblioteca Scikit-Learn associadas ao aprendizado de máquinas <cite data-cite="236589/TU28EEPW"></cite>.</p>
+<p>A biblioteca <a class="reference external" href="http://scikit-learn.org">Scikit-Learn</a> fornece versões eficientes de um grande número de algoritmos comumente utilizados no aprendizado de máquinas. A ampla adoção da biblioteca se deve muito a simplicidade e eficiência da sua Interface de Programação de Aplicação (do inglês API - <em>Application Programming Interface</em>), ou seja, o conjunto de rotinas e padrões estabelecidos pela biblioteca para acessar suas funcionalidades. Os padrões uniformes permitem que o aprendizado de diferentes modelos seja facilitado. Esta seção irá introduzir algumas funcionalidades da biblioteca Scikit-Learn associadas ao aprendizado de máquinas <span id="id1">[<a class="reference internal" href="8-Cluster_Analysis.html#id7" title="Jake VanderPlas. Python data science handbook: Essential tools for working with data. &quot; O'Reilly Media, Inc.&quot;, 2016.">Van16</a>]</span>.</p>
 <p><a id="11"></a> <br></p>
 <section id="aprendizado-de-maquinas-em-scikit-learn">
 <h2>1.1 - Aprendizado de máquinas em Scikit-Learn<a class="headerlink" href="#aprendizado-de-maquinas-em-scikit-learn" title="Link to this heading">#</a></h2>
@@ -485,7 +485,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %matplotlib inline faz com que as saídas dos plots sejam direcionadas para o notebook</span>
-<span class="o">%</span><span class="k">matplotlib</span> inline 
+<span class="o">%</span><span class="k">matplotlib</span> inline
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span><span class="p">;</span> <span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
 <span class="n">iris</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;iris&#39;</span><span class="p">)</span> <span class="c1"># carrega o conjunto de dados</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">iris</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;species&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mf">1.5</span><span class="p">);</span>
@@ -632,7 +632,7 @@ Número de características: 5
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># contar as classes em que se dividem as amostras </span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># contar as classes em que se dividem as amostras</span>
 <span class="n">iris</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -650,7 +650,7 @@ Name: count, dtype: int64
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plotar duas características diferenciando as amostras por cores</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">iris</span><span class="p">[</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">],</span> <span class="n">iris</span><span class="p">[</span><span class="s1">&#39;sepal_width&#39;</span><span class="p">],</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">iris</span><span class="p">[</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">],</span> <span class="n">iris</span><span class="p">[</span><span class="s1">&#39;sepal_width&#39;</span><span class="p">],</span>
             <span class="n">c</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;blue&#39;</span><span class="p">]</span><span class="o">*</span><span class="mi">50</span><span class="o">+</span>
             <span class="p">[</span><span class="s1">&#39;red&#39;</span><span class="p">]</span><span class="o">*</span><span class="mi">50</span><span class="o">+</span>
             <span class="p">[</span><span class="s1">&#39;green&#39;</span><span class="p">]</span><span class="o">*</span><span class="mi">50</span><span class="p">)</span>
@@ -658,7 +658,7 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x789200284fb0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x73eb7209cce0&gt;
 </pre></div>
 </div>
 <img alt="_images/4792990f9a1330a0e39f4ba6657094b79d7000bfc09167f56e913165b4b927be.png" src="_images/4792990f9a1330a0e39f4ba6657094b79d7000bfc09167f56e913165b4b927be.png" />
@@ -882,7 +882,7 @@ problems.
 
 <span class="n">X_treinamento</span><span class="p">,</span> <span class="n">X_teste</span><span class="p">,</span> <span class="n">y_treinamento</span><span class="p">,</span> <span class="n">y_teste</span> <span class="o">=</span> \
 <span class="n">train_test_split</span><span class="p">(</span><span class="n">dados</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">dados</span><span class="o">.</span><span class="n">target</span><span class="p">)</span> <span class="c1"># divide os dados em conjuntos de treinamento e teste</span>
-                                           <span class="c1"># veremos mais detalhes adiante                           </span>
+                                           <span class="c1"># veremos mais detalhes adiante</span>
 </pre></div>
 </div>
 </div>
@@ -905,7 +905,7 @@ problems.
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">predito</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_teste</span><span class="p">)</span> <span class="c1"># realiza a predição de um conjunto externo ao treinamento</span>
 <span class="n">esperado</span> <span class="o">=</span> <span class="n">y_teste</span>
 <span class="c1"># raiz do valor quadrático médio (do inglês - Root Mean Square)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;RMS: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">predito</span> <span class="o">-</span> <span class="n">esperado</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)))</span> 
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;RMS: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">predito</span> <span class="o">-</span> <span class="n">esperado</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)))</span>
 </pre></div>
 </div>
 </div>
@@ -966,7 +966,7 @@ problems.
 
 <span class="n">X_treinamento</span><span class="p">,</span> <span class="n">X_teste</span><span class="p">,</span> <span class="n">y_treinamento</span><span class="p">,</span> <span class="n">y_teste</span> <span class="o">=</span> \
 <span class="n">train_test_split</span><span class="p">(</span><span class="n">digitos</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">digitos</span><span class="o">.</span><span class="n">target</span><span class="p">)</span> <span class="c1"># divide os dados em conjuntos de treinamento e teste</span>
-                                               <span class="c1"># veremos mais detalhes adiante                           </span>
+                                               <span class="c1"># veremos mais detalhes adiante</span>
 </pre></div>
 </div>
 </div>
@@ -999,7 +999,7 @@ problems.
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># use the model to predict the labels of the test data</span>
 <span class="n">predito</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_teste</span><span class="p">)</span>
 <span class="n">esperado</span> <span class="o">=</span> <span class="n">y_teste</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Rótulos Preditos:&#39;</span><span class="p">,</span> <span class="n">predito</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Rótulos Preditos:&#39;</span><span class="p">,</span> <span class="n">predito</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Rótulos Esperados:&#39;</span><span class="p">,</span> <span class="n">esperado</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1039,7 +1039,35 @@ Rótulos Esperados: [2 3 1 0 1 1 2 0 9 3 9 9 2 1 3 4 3 6 4 7 3 1 7 5 0 0 8 3 4 7
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="referencias">
 <h1>6 - Referências<a class="headerlink" href="#referencias" title="Link to this heading">#</a></h1>
-<div class="cite2c-biblio"></div><section id="voltar-ao-topo">
+<div class="docutils container" id="id2">
+<div role="list" class="citation-list">
+<div class="citation" id="id9" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>ELLS11<span class="fn-bracket">]</span></span>
+<p>Brian S. Everitt, Sabine Landau, Morven Leese, and Daniel Stahl. Cluster analysis: Fifth edition. <em>Cluster Analysis: Fifth Edition</em>, pages 1–330, jan 2011.</p>
+</div>
+<div class="citation" id="id4" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>JWH+23<span class="fn-bracket">]</span></span>
+<p>Gareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani, and Jonathan Taylor. <em>An introduction to statistical learning: With applications in python</em>. Springer Nature, 2023.</p>
+</div>
+<div class="citation" id="id3" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Mat23<span class="fn-bracket">]</span></span>
+<p>Eric Matthes. <em>Python crash course: A hands-on, project-based introduction to programming</em>. no starch press, 2023.</p>
+</div>
+<div class="citation" id="id5" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>RG16<span class="fn-bracket">]</span></span>
+<p>Simon Rogers and Mark Girolami. <em>A first course in machine learning</em>. Chapman and Hall/CRC, 2016.</p>
+</div>
+<div class="citation" id="id6" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">Van16</a><span class="fn-bracket">]</span></span>
+<p>Jake VanderPlas. <em>Python data science handbook: Essential tools for working with data</em>. &quot; O'Reilly Media, Inc.&quot;, 2016.</p>
+</div>
+<div class="citation" id="id7" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>VF16<span class="fn-bracket">]</span></span>
+<p>Kurt Varmuza and Peter Filzmoser. <em>Introduction to multivariate statistical analysis in chemometrics</em>. CRC press, 2016.</p>
+</div>
+</div>
+</div>
+<section id="voltar-ao-topo">
 <h2><a class="reference internal" href="#top"><span class="xref myst">Voltar ao topo</span></a><a class="headerlink" href="#voltar-ao-topo" title="Link to this heading">#</a></h2>
 <!--NAVIGATION-->
 <p>&lt; <a class="reference internal" href="4-Pandas_Library.html"><span class="std std-doc">Pandas Library</span></a> | <a class="reference internal" href="0-Index.html"><span class="std std-doc">Contents</span></a> | <a class="reference internal" href="6-Regression_Analysis.html"><span class="std std-doc">Regression_Analysis</span></a>  &gt;</p>

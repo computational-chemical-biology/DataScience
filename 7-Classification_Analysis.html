@@ -469,7 +469,7 @@ document.write(`
 <section class="tex2jax_ignore mathjax_ignore" id="introducao-a-analise-de-classificacao">
 <h1>1 - Introdução à Análise de Classificação<a class="headerlink" href="#introducao-a-analise-de-classificacao" title="Link to this heading">#</a></h1>
 <p>Como discutido anteriormente na introdução da biblioteca <a class="reference internal" href="#2.4-Scikit-Learn_Library.ipynb"><span class="xref myst">Scikit-Learn</span></a>, os modelos de regressão são comumente utilizados quando a variável reposta (Y), que se deseja predizer, é quantitativa. Existem ocasiões em que a variável que se deseja predizer é uma variável categórica. A predição de uma variável categórica implica em atribuir uma nova amostra ou observação a uma categoria ou classe. Nesta seção discutiremos classificadores que são amplamente adotados, com o foco no aprendizado dos conceitos de classificação.</p>
-<p>Para ilustrar o conceito de classificação utilizaremos o conjunto de dados simulados sobre dívidas em cartão do livro <cite data-cite="236589/7WULH9A7"></cite>.</p>
+<p>Para ilustrar o conceito de classificação utilizaremos o conjunto de dados simulados sobre dívidas em cartão do livro <span id="id1">[<a class="reference internal" href="8-Cluster_Analysis.html#id5" title="Gareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani, and Jonathan Taylor. An introduction to statistical learning: With applications in python. Springer Nature, 2023.">JWH+23</a>]</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
@@ -587,7 +587,7 @@ document.write(`
 <p>De forma geral, não existe uma forma natural de converter uma variável resposta qualitativa, com mais de dois níveis, em uma variável quantitativa, para utilizar os modelos de regressão vistos anteriormente. No modelo de regressão logística, ao invés de modelar a variável resposta Y diretamente, se modela a probabilidade de Y pertencer a uma categoria específica.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Como visto na seção anterior primeiramente temos que </span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Como visto na seção anterior primeiramente temos que</span>
 <span class="c1"># remodelar os dados</span>
 <span class="n">dividas</span><span class="p">[</span><span class="s1">&#39;debito2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dividas</span><span class="o">.</span><span class="n">debito</span><span class="o">.</span><span class="n">factorize</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">dividas</span><span class="p">[</span><span class="s1">&#39;estudante2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dividas</span><span class="o">.</span><span class="n">estudante</span><span class="o">.</span><span class="n">factorize</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
@@ -1242,7 +1242,7 @@ Name: species, dtype: int64
 </div>
 </div>
 <p>Seguindo o algortimo descrito acima, começamos pelo cálculo das médias:</p>
-<p><span class="math notranslate nohighlight">\(m_i = \begin{bmatrix} 
+<p><span class="math notranslate nohighlight">\(m_i = \begin{bmatrix}
 \mu_{\omega_i (comprimento\ sépala)} \\
 \mu_{\omega_i (largura\ sépala)} \\
 \mu_{\omega_i (comprimento\ pétala)} \\
@@ -1307,7 +1307,7 @@ Vetor de médias da classe 3: [6.588 2.974 5.552 2.026]
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">overall_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="n">S_B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">mean_vec</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">mean_vectors</span><span class="p">):</span>  
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">mean_vec</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">mean_vectors</span><span class="p">):</span>
     <span class="n">n</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">y</span><span class="o">==</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,:]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">mean_vec</span> <span class="o">=</span> <span class="n">mean_vec</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># criar vetores coluna</span>
     <span class="n">overall_mean</span> <span class="o">=</span> <span class="n">overall_mean</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># criar vetores coluna</span>
@@ -1335,7 +1335,7 @@ Vetor de médias da classe 3: [6.588 2.974 5.552 2.026]
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eig_vals</span><span class="p">,</span> <span class="n">eig_vecs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">S_W</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">S_B</span><span class="p">))</span>
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">eig_vals</span><span class="p">)):</span>
-    <span class="n">eigvec_sc</span> <span class="o">=</span> <span class="n">eig_vecs</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>   
+    <span class="n">eigvec_sc</span> <span class="o">=</span> <span class="n">eig_vecs</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Autovetor </span><span class="si">{}</span><span class="s1">: </span><span class="se">\n</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">eigvec_sc</span><span class="o">.</span><span class="n">real</span><span class="p">))</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Autovalor </span><span class="si">{:}</span><span class="s1">: </span><span class="si">{:.2e}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">eig_vals</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">real</span><span class="p">))</span>
 </pre></div>
@@ -1561,14 +1561,14 @@ Autovalores 4: 0.00%
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Exemplo do cálculo da distância euclideana</span>
 <span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span>
- 
+
 <span class="c1"># calcule distância euclideana entre dois vetores</span>
 <span class="k">def</span> <span class="nf">euclidean_distance</span><span class="p">(</span><span class="n">row1</span><span class="p">,</span> <span class="n">row2</span><span class="p">):</span>
     <span class="n">distance</span> <span class="o">=</span> <span class="mf">0.0</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">row1</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
         <span class="n">distance</span> <span class="o">+=</span> <span class="p">(</span><span class="n">row1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">row2</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span>
     <span class="k">return</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">distance</span><span class="p">)</span>
- 
+
 <span class="c1"># Utilize um pequeno conjunto de dados para testar</span>
 <span class="n">dados_teste</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">2.7810836</span><span class="p">,</span><span class="mf">2.550537003</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
     <span class="p">[</span><span class="mf">1.465489372</span><span class="p">,</span><span class="mf">2.362125076</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
@@ -1638,7 +1638,7 @@ Autovalores 4: 0.00%
     <span class="n">output_values</span> <span class="o">=</span> <span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">neighbors</span><span class="p">]</span>
     <span class="n">prediction</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">output_values</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="n">output_values</span><span class="o">.</span><span class="n">count</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">prediction</span>
- 
+
 <span class="n">prediction</span> <span class="o">=</span> <span class="n">predict_classification</span><span class="p">(</span><span class="n">dados_teste</span><span class="p">,</span> <span class="n">dados_teste</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">3</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Expected </span><span class="si">%d</span><span class="s1">, Got </span><span class="si">%d</span><span class="s1">.&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">dados_teste</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">prediction</span><span class="p">))</span>
 </pre></div>
@@ -1676,13 +1676,13 @@ Autovalores 4: 0.00%
 <span class="n">X_treinamento</span> <span class="o">=</span> <span class="n">sc_x</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_treinamento</span><span class="p">)</span>
 <span class="n">X_teste</span> <span class="o">=</span> <span class="n">sc_x</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_teste</span><span class="p">)</span>
 
-<span class="c1"># Aplicar o classificador knn com diferentes valores k aos dados da Iris </span>
+<span class="c1"># Aplicar o classificador knn com diferentes valores k aos dados da Iris</span>
 <span class="c1"># para encontrar o k baseado na melhor acurácia</span>
 <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">30</span><span class="p">):</span>
     <span class="n">classifier</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;euclidean&#39;</span><span class="p">)</span>
     <span class="n">classifier</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_treinamento</span><span class="p">,</span> <span class="n">y_treinamento</span><span class="p">)</span>
     <span class="n">y_preds</span> <span class="o">=</span> <span class="n">classifier</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_teste</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A acurácia para k =&quot;</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="s2">&quot;é:&quot;</span><span class="p">,</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_teste</span><span class="p">,</span> <span class="n">y_preds</span><span class="p">))</span>    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A acurácia para k =&quot;</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="s2">&quot;é:&quot;</span><span class="p">,</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_teste</span><span class="p">,</span> <span class="n">y_preds</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1723,7 +1723,35 @@ A acurácia para k = 29 é: 0.9333333333333333
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="referencias">
 <h1>5 - Referências<a class="headerlink" href="#referencias" title="Link to this heading">#</a></h1>
-<div class="cite2c-biblio"></div><section id="voltar-ao-topo">
+<div class="docutils container" id="id2">
+<div role="list" class="citation-list">
+<div class="citation" id="id9" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>ELLS11<span class="fn-bracket">]</span></span>
+<p>Brian S. Everitt, Sabine Landau, Morven Leese, and Daniel Stahl. Cluster analysis: Fifth edition. <em>Cluster Analysis: Fifth Edition</em>, pages 1–330, jan 2011.</p>
+</div>
+<div class="citation" id="id4" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">JWH+23</a><span class="fn-bracket">]</span></span>
+<p>Gareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani, and Jonathan Taylor. <em>An introduction to statistical learning: With applications in python</em>. Springer Nature, 2023.</p>
+</div>
+<div class="citation" id="id3" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Mat23<span class="fn-bracket">]</span></span>
+<p>Eric Matthes. <em>Python crash course: A hands-on, project-based introduction to programming</em>. no starch press, 2023.</p>
+</div>
+<div class="citation" id="id5" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>RG16<span class="fn-bracket">]</span></span>
+<p>Simon Rogers and Mark Girolami. <em>A first course in machine learning</em>. Chapman and Hall/CRC, 2016.</p>
+</div>
+<div class="citation" id="id6" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Van16<span class="fn-bracket">]</span></span>
+<p>Jake VanderPlas. <em>Python data science handbook: Essential tools for working with data</em>. &quot; O'Reilly Media, Inc.&quot;, 2016.</p>
+</div>
+<div class="citation" id="id7" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>VF16<span class="fn-bracket">]</span></span>
+<p>Kurt Varmuza and Peter Filzmoser. <em>Introduction to multivariate statistical analysis in chemometrics</em>. CRC press, 2016.</p>
+</div>
+</div>
+</div>
+<section id="voltar-ao-topo">
 <h2><a class="reference internal" href="#top"><span class="xref myst">Voltar ao topo</span></a><a class="headerlink" href="#voltar-ao-topo" title="Link to this heading">#</a></h2>
 <!--NAVIGATION-->
 <p>&lt; <a class="reference internal" href="6-Regression_Analysis.html"><span class="std std-doc">Regression Analysis</span></a> | <a class="reference internal" href="0-Index.html"><span class="std std-doc">Contents</span></a> | <a class="reference internal" href="8-Cluster_Analysis.html"><span class="std std-doc">Cluster Analysis</span></a>  &gt;</p>

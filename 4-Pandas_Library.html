@@ -479,7 +479,7 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="introducao-a-biblioteca-pandas">
 <h1>1 - Introdução à biblioteca Pandas<a class="headerlink" href="#introducao-a-biblioteca-pandas" title="Link to this heading">#</a></h1>
-<p>A biblioteca Pandas fornece métodos para manipulação eficiente de <em>arrays</em> multidimensionais com rótulos (<em>labels</em>) para linhas e colunas, e com a possibilidade de armazenar diferentes tipos de dados. Estes <em>arrays</em> multidimensionais são denominados <code class="docutils literal notranslate"><span class="pre">DataFrames</span></code><cite data-cite="236589/TU28EEPW"></cite>.</p>
+<p>A biblioteca Pandas fornece métodos para manipulação eficiente de <em>arrays</em> multidimensionais com rótulos (<em>labels</em>) para linhas e colunas, e com a possibilidade de armazenar diferentes tipos de dados. Estes <em>arrays</em> multidimensionais são denominados <code class="docutils literal notranslate"><span class="pre">DataFrames</span></code><span id="id1">[<a class="reference internal" href="8-Cluster_Analysis.html#id7" title="Jake VanderPlas. Python data science handbook: Essential tools for working with data. &quot; O'Reilly Media, Inc.&quot;, 2016.">Van16</a>]</span>.</p>
 <p>Pandas estende as funcionalidades dos objetos <code class="docutils literal notranslate"><span class="pre">ndarrays</span></code> da biblioteca NumPy, incorporando maior flexibilidade a manipulação de grandes conjuntos de dados.</p>
 <p>Assim como NumPy, a biblioteca Pandas possui uma extensa <a class="reference external" href="http://pandas.pydata.org/">documentação</a>.</p>
 <p>Como na seção anterior, recomendamos a versão 0.18.1 ou superior.</p>
@@ -827,7 +827,7 @@ Name: Area, dtype: int64
 <p>Os objetos <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> podem ser construídos de formas variadas, como exemplos</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># de um único objeto Series </span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># de um único objeto Series</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">populacao</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Populacao&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
@@ -1015,18 +1015,18 @@ Name: Area, dtype: int64
   <tbody>
     <tr>
       <th>a</th>
-      <td>0.953940</td>
-      <td>0.298244</td>
+      <td>0.358685</td>
+      <td>0.157571</td>
     </tr>
     <tr>
       <th>b</th>
-      <td>0.172377</td>
-      <td>0.262597</td>
+      <td>0.624339</td>
+      <td>0.381095</td>
     </tr>
     <tr>
       <th>c</th>
-      <td>0.794179</td>
-      <td>0.745571</td>
+      <td>0.092775</td>
+      <td>0.734505</td>
     </tr>
   </tbody>
 </table>
@@ -1915,12 +1915,12 @@ dtype: float64
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Um estado foi removido de cada dicionário</span>
-<span class="n">area</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="s1">&#39;Sao Paulo&#39;</span><span class="p">:</span> <span class="mi">248222</span><span class="p">,</span> <span class="s1">&#39;Minas Gerais&#39;</span><span class="p">:</span> <span class="mi">586522</span><span class="p">,</span>  
-                  <span class="s1">&#39;Rio de Janeiro&#39;</span><span class="p">:</span> <span class="mi">43780</span><span class="p">,</span> <span class="s1">&#39;Bahia&#39;</span><span class="p">:</span> <span class="mi">564733</span><span class="p">},</span> 
+<span class="n">area</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="s1">&#39;Sao Paulo&#39;</span><span class="p">:</span> <span class="mi">248222</span><span class="p">,</span> <span class="s1">&#39;Minas Gerais&#39;</span><span class="p">:</span> <span class="mi">586522</span><span class="p">,</span>
+                  <span class="s1">&#39;Rio de Janeiro&#39;</span><span class="p">:</span> <span class="mi">43780</span><span class="p">,</span> <span class="s1">&#39;Bahia&#39;</span><span class="p">:</span> <span class="mi">564733</span><span class="p">},</span>
                  <span class="n">name</span><span class="o">=</span><span class="s1">&#39;area&#39;</span><span class="p">)</span>
 
 <span class="n">populacao</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="s1">&#39;Sao Paulo&#39;</span><span class="p">:</span> <span class="mi">45919049</span><span class="p">,</span> <span class="s1">&#39;Minas Gerais&#39;</span><span class="p">:</span> <span class="mi">21168791</span><span class="p">,</span>
-                       <span class="s1">&#39;Rio de Janeiro&#39;</span><span class="p">:</span> <span class="mi">17264943</span><span class="p">,</span> <span class="s1">&#39;Parana&#39;</span><span class="p">:</span> <span class="mi">11433957</span><span class="p">},</span> 
+                       <span class="s1">&#39;Rio de Janeiro&#39;</span><span class="p">:</span> <span class="mi">17264943</span><span class="p">,</span> <span class="s1">&#39;Parana&#39;</span><span class="p">:</span> <span class="mi">11433957</span><span class="p">},</span>
                         <span class="n">name</span><span class="o">=</span><span class="s1">&#39;populacao&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -2339,7 +2339,7 @@ dtype: object
 <p>Uma característica vantajosa de Pandas é sua funcionalidade comparar e reunir <code class="docutils literal notranslate"><span class="pre">DataFrames</span></code> de forma rápida e eficiente. A principal interface para estas operações é a função <code class="docutils literal notranslate"><span class="pre">pd.merge</span></code>. A função <code class="docutils literal notranslate"><span class="pre">pd.merge</span></code> implementa três tipos principais de junções um-para-um, muitos-para-um e muitos-para-muitos (<em>one-to-one</em>, <em>many-to-one</em>, and <em>many-to-many</em>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Junção um-para-um </span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Junção um-para-um</span>
 <span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Empregado&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Carlos&#39;</span><span class="p">,</span> <span class="s1">&#39;Luiz&#39;</span><span class="p">,</span> <span class="s1">&#39;Livia&#39;</span><span class="p">,</span> <span class="s1">&#39;João&#39;</span><span class="p">],</span>
                     <span class="s1">&#39;Grupo&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Contabilidade&#39;</span><span class="p">,</span> <span class="s1">&#39;Engenharia&#39;</span><span class="p">,</span> <span class="s1">&#39;Engenharia&#39;</span><span class="p">,</span> <span class="s1">&#39;RH&#39;</span><span class="p">]})</span>
 <span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Empregado&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Livia&#39;</span><span class="p">,</span> <span class="s1">&#39;Carlos&#39;</span><span class="p">,</span> <span class="s1">&#39;Luiz&#39;</span><span class="p">,</span> <span class="s1">&#39;João&#39;</span><span class="p">],</span>
@@ -2748,7 +2748,7 @@ dtype: object
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Podemos utilizar uma lógica semelhante </span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Podemos utilizar uma lógica semelhante</span>
 <span class="c1"># e fazer a junção pelos índices</span>
 <span class="n">df1a</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Empregado&#39;</span><span class="p">)</span>
 <span class="n">df2a</span> <span class="o">=</span> <span class="n">df2</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Empregado&#39;</span><span class="p">)</span>
@@ -3187,7 +3187,35 @@ dtype: object
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="referencias">
 <h1>6 - Referências<a class="headerlink" href="#referencias" title="Link to this heading">#</a></h1>
-<div class="cite2c-biblio"></div><section id="voltar-ao-topo">
+<div class="docutils container" id="id2">
+<div role="list" class="citation-list">
+<div class="citation" id="id9" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>ELLS11<span class="fn-bracket">]</span></span>
+<p>Brian S. Everitt, Sabine Landau, Morven Leese, and Daniel Stahl. Cluster analysis: Fifth edition. <em>Cluster Analysis: Fifth Edition</em>, pages 1–330, jan 2011.</p>
+</div>
+<div class="citation" id="id4" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>JWH+23<span class="fn-bracket">]</span></span>
+<p>Gareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani, and Jonathan Taylor. <em>An introduction to statistical learning: With applications in python</em>. Springer Nature, 2023.</p>
+</div>
+<div class="citation" id="id3" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Mat23<span class="fn-bracket">]</span></span>
+<p>Eric Matthes. <em>Python crash course: A hands-on, project-based introduction to programming</em>. no starch press, 2023.</p>
+</div>
+<div class="citation" id="id5" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>RG16<span class="fn-bracket">]</span></span>
+<p>Simon Rogers and Mark Girolami. <em>A first course in machine learning</em>. Chapman and Hall/CRC, 2016.</p>
+</div>
+<div class="citation" id="id6" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">Van16</a><span class="fn-bracket">]</span></span>
+<p>Jake VanderPlas. <em>Python data science handbook: Essential tools for working with data</em>. &quot; O'Reilly Media, Inc.&quot;, 2016.</p>
+</div>
+<div class="citation" id="id7" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>VF16<span class="fn-bracket">]</span></span>
+<p>Kurt Varmuza and Peter Filzmoser. <em>Introduction to multivariate statistical analysis in chemometrics</em>. CRC press, 2016.</p>
+</div>
+</div>
+</div>
+<section id="voltar-ao-topo">
 <h2><a class="reference internal" href="#top"><span class="xref myst">Voltar ao topo</span></a><a class="headerlink" href="#voltar-ao-topo" title="Link to this heading">#</a></h2>
 <!--NAVIGATION-->
 <p>&lt; <a class="reference internal" href="3-NumPy_Library.html"><span class="std std-doc">NumPy Library</span></a> | <a class="reference internal" href="0-Index.html"><span class="std std-doc">Contents</span></a> | <a class="reference internal" href="5-Scikit-Learn_Library.html"><span class="std std-doc">Scikit-Learn Library</span></a>  &gt;</p>
